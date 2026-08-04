@@ -1,23 +1,69 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
+import { Font } from "astro:assets";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+const titulo = "Eleve Locações — Aluguel de Equipamentos em Sobral-CE";
+const descricao =
+  "Locação de andaimes, betoneiras, martelos demolidores, geradores e mais de 40 equipamentos para construção civil em Sobral e Preá-CE. Peça no WhatsApp.";
+const url = Astro.site ?? new URL(Astro.url.pathname, "https://elevelocacoes.com.br");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Eleve Locações de Equipamentos",
+  image: "https://elevelocacoes.com.br/logo-eleve.png",
+  telephone: "+5588999983050",
+  email: "elevelocacoes@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Rua Dr. Ronaldo Ponte Dias, 1279 — Bairro Antônio Carlos Belchior",
+    addressLocality: "Sobral",
+    addressRegion: "CE",
+    addressCountry: "BR",
+  },
+  areaServed: ["Sobral", "Preá"],
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+    ],
+    opens: "07:30",
+    closes: "17:00",
+  },
+  sameAs: ["https://www.instagram.com/elevelocacoes/"],
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{titulo}</title>
+    <meta name="description" content={descricao} />
+    <link rel="canonical" href={url} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:url" content={url} />
+
+    <Font cssVariable="--font-big-shoulders" preload />
+    <Font cssVariable="--font-plex-sans" preload />
+    <Font cssVariable="--font-plex-mono" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+  </head>
+  <body class="font-sans">
+    <slot />
+  </body>
+</html>

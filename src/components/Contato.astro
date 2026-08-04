@@ -1,0 +1,94 @@
+---
+const ENDERECO =
+  "Rua Dr. Ronaldo Ponte Dias, 1279 — Bairro Antônio Carlos Belchior, Sobral-CE";
+const MAPA_SRC = `https://www.google.com/maps?q=${encodeURIComponent(
+  ENDERECO,
+)}&output=embed`;
+
+const telefones = [
+  { label: "Fixo", numero: "(88) 3111-3241", tel: "+558831113241" },
+  { label: "Tim (WhatsApp)", numero: "(88) 99998-3050", tel: "+5588999983050" },
+  { label: "Claro", numero: "(88) 9333-9830", tel: "+558893339830" },
+];
+---
+
+<section id="contato" class="bg-graphite-900 py-16 sm:py-24">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2">
+    <div>
+      <p class="font-mono text-xs font-medium uppercase tracking-[0.2em] text-accent">
+        Contato
+      </p>
+      <h2 class="mt-3 font-display text-3xl leading-tight text-white sm:text-4xl">
+        Fale direto com a loja
+      </h2>
+
+      <dl class="mt-8 space-y-6 text-sm">
+        <div>
+          <dt class="font-mono uppercase tracking-wide text-graphite-300">
+            Endereço
+          </dt>
+          <dd class="mt-1 text-graphite-100">{ENDERECO}</dd>
+        </div>
+
+        <div>
+          <dt class="font-mono uppercase tracking-wide text-graphite-300">
+            Telefones
+          </dt>
+          <dd class="mt-1 flex flex-col gap-1">
+            {
+              telefones.map((telefone) => (
+                <a
+                  href={`tel:${telefone.tel}`}
+                  class="text-graphite-100 underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent"
+                >
+                  {telefone.numero}
+                  <span class="text-graphite-300"> — {telefone.label}</span>
+                </a>
+              ))
+            }
+          </dd>
+        </div>
+
+        <div>
+          <dt class="font-mono uppercase tracking-wide text-graphite-300">
+            E-mail
+          </dt>
+          <dd class="mt-1">
+            <a
+              href="mailto:elevelocacoes@gmail.com"
+              class="text-graphite-100 underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent"
+            >
+              elevelocacoes@gmail.com
+            </a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="font-mono uppercase tracking-wide text-graphite-300">
+            Horário
+          </dt>
+          <dd class="mt-1 text-graphite-100">
+            Segunda a sexta, 7h30–12h e 13h30–17h
+          </dd>
+        </div>
+
+        <div>
+          <dt class="font-mono uppercase tracking-wide text-graphite-300">
+            Atendimento
+          </dt>
+          <dd class="mt-1 text-graphite-100">Sobral (foco) e Preá</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="min-h-[320px] overflow-hidden rounded-md border border-graphite-700 lg:min-h-full">
+      <iframe
+        title="Mapa até a Eleve Locações"
+        src={MAPA_SRC}
+        class="h-full min-h-[320px] w-full grayscale-[40%]"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>

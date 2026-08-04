@@ -23,9 +23,10 @@ encontra o equipamento, vê o preço, e chama a empresa com a mensagem já escri
 
 ## Stack
 
-Astro 7 + Tailwind 4, já instalados no repositório. Saída estática. Sem framework de UI —
-o único comportamento dinâmico (filtro e busca do catálogo) é JS vanilla sobre
-`data-attributes`, o que não justifica hidratar React ou Vue.
+Astro 7 + Tailwind 4, já instalados no repositório. Saída estática. O único comportamento
+dinâmico é o filtro e busca do catálogo, isolado em uma ilha React (`@astrojs/react`,
+`client:load`) — `CatalogoFiltro.tsx`. O resto da página continua Astro puro, sem
+hidratação.
 
 ## Arquitetura
 
@@ -35,17 +36,19 @@ src/
   components/
     Header.astro             # topo fixo: logo + CTA WhatsApp
     Hero.astro
-    Catalogo.astro           # busca + chips de categoria + grid
-    CardEquipamento.astro     # renderiza os dois formatos de preço
+    Catalogo.astro           # calcula temFoto por item e monta a ilha React
     ComoFunciona.astro
     Contato.astro
     Footer.astro
     BotaoWhatsApp.astro      # flutuante
+    react/
+      CatalogoFiltro.tsx     # ilha: busca + chips de categoria + grid + estado vazio
+      CardEquipamentoReact.tsx # renderiza os dois formatos de preço
   layouts/Layout.astro       # <head>, meta tags, SEO, fontes
   pages/index.astro          # compõe as seções
   styles/global.css          # tokens de cor e tipografia (Tailwind 4 @theme)
 public/
-  logo-eleve.jpg
+  logo-eleve.png
   produtos/<slug>.jpg        # fotos, a serem enviadas pelo cliente
 ```
 
