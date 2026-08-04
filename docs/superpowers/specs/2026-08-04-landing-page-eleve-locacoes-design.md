@@ -232,9 +232,10 @@ arredondados, faixas diagonais discretas como elemento gráfico recorrente.
 ## Fotos
 
 O cliente enviará as fotos depois. A implementação usa `public/produtos/<slug>.jpg` e, na
-ausência do arquivo, exibe um placeholder no estilo da marca (fundo grafite claro com o
-ícone da categoria em laranja). Assim a página fica publicável hoje e as fotos entram
-depois sem alteração de código.
+ausência do arquivo, exibe um placeholder no estilo da marca: fundo grafite claro, ícone
+da categoria em laranja e **o nome do equipamento escrito por cima**, para que o card
+continue legível e útil mesmo sem foto. Assim a página fica publicável hoje e as fotos
+entram depois apenas soltando os arquivos na pasta, sem alteração de código.
 
 ## Fora de escopo
 
@@ -254,17 +255,12 @@ depois sem alteração de código.
 - Layout sem quebra ou rolagem horizontal em 360px, 768px e 1440px
 - Preços renderizados no formato brasileiro (`R$ 1.200,00`) e conferidos contra este spec
 
-## Pendências com o cliente
+## Decisões confirmadas pelo cliente
 
-Não bloqueiam a implementação. Os valores vão para o ar como estão na tabela.
-
-1. **Guincho de Coluna 350Kg** — semana R$675 é maior que quinzena R$375 e que mês R$450
-2. **Betoneira 400L** — semana R$280 contra quinzena R$300: duas semanas custam quase o
-   mesmo que uma
-3. **Compactador de Percussão** — mês R$3.000 equivale a 15 diárias, único item sem
-   desconto no prazo mensal
-4. **Parafusadeira Bosch** — semana e quinzena idênticas (R$105)
-5. **Martelo Demolidor 30Kg** e **Placa Vibratória** — quinzena e mês idênticos (R$1.200)
-6. **Fotos dos equipamentos** — pendentes de envio
-7. **Sábado** — o cliente informou apenas segunda a sexta; confirmar se não há expediente
-   aos sábados antes de publicar
+- **Horário** — não há expediente aos sábados. A página informa apenas segunda a sexta.
+- **Preços** — vão ao ar exatamente como na tabela, inclusive nos pontos que parecem
+  digitação (Guincho de Coluna com semana acima da quinzena; Betoneira com quinzena quase
+  igual à semana; Compactador sem desconto mensal; Parafusadeira com semana e quinzena
+  iguais; Martelo Demolidor 30Kg e Placa Vibratória com quinzena e mês iguais). Serão
+  revisados depois pelo cliente, editando `src/data/equipamentos.ts`.
+- **Fotos** — serão enviadas depois. Até lá, placeholder com o nome do equipamento.
