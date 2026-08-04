@@ -2,17 +2,17 @@ import { formatBRL } from "../../lib/formato";
 import { linkWhatsApp, mensagemProduto } from "../../lib/whatsapp";
 import type { Equipamento } from "../../data/equipamentos";
 
-type Props = {
+type CardEquipamentoProps = {
   equipamento: Equipamento;
   categoriaLabel: string;
   temFoto: boolean;
 };
 
-export default function CardEquipamentoReact({
+export default function CardEquipamento({
   equipamento,
   categoriaLabel,
   temFoto,
-}: Props) {
+}: CardEquipamentoProps) {
   const { slug, nome, tipoPreco, precos, descricao } = equipamento;
 
   return (

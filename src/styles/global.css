@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  /* Paleta da marca — definida pelo cliente */
   --color-accent: #f89c33;
   --color-accent-dark: #d9821f;
   --color-accent-tint: #fdf1de;
@@ -46,18 +45,6 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Faixa diagonal — elemento de assinatura, evoca fita de sinalização de obra.
-   Usar em faixas finas (dividers, cantos de chip ativo), nunca em áreas grandes. */
-.stripes-diagonal {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    var(--color-accent) 0,
-    var(--color-accent) 14px,
-    var(--color-graphite-900) 14px,
-    var(--color-graphite-900) 28px
-  );
 }
 
 :focus-visible {

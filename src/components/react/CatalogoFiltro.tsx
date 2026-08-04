@@ -6,12 +6,12 @@ import CardEquipamento from "./CardEquipamento";
 
 type EquipamentoComFoto = Equipamento & { temFoto: boolean };
 
-type Props = {
+type CatalogoFiltroProps = {
   equipamentos: EquipamentoComFoto[];
   categorias: Categoria[];
 };
 
-export default function CatalogoFiltro({ equipamentos, categorias }: Props) {
+export default function CatalogoFiltro({ equipamentos, categorias }: CatalogoFiltroProps) {
   const [busca, setBusca] = useState("");
   const [categoriaAtiva, setCategoriaAtiva] = useState("todos");
 
@@ -67,7 +67,7 @@ export default function CatalogoFiltro({ equipamentos, categorias }: Props) {
             <button
               key={categoria.id}
               type="button"
-              className="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark"
+              className="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
               data-active={categoriaAtiva === categoria.id}
               aria-pressed={categoriaAtiva === categoria.id}
               onClick={() => setCategoriaAtiva(categoria.id)}
@@ -76,10 +76,6 @@ export default function CatalogoFiltro({ equipamentos, categorias }: Props) {
             </button>
           ))}
         </div>
-
-        <p className="text-sm text-graphite-700" aria-live="polite">
-          {visiveis.length} de {equipamentos.length} equipamentos
-        </p>
       </div>
 
       {visiveis.length > 0 ? (
