@@ -11,16 +11,19 @@ type CatalogoFiltroProps = {
   categorias: Categoria[];
 };
 
+const ITENS_POR_PAGINA = 4;
+
 export default function CatalogoFiltro({ equipamentos, categorias }: CatalogoFiltroProps) {
   const [busca, setBusca] = useState("");
   const [categoriaAtiva, setCategoriaAtiva] = useState("todos");
+  const [limite, setLimite] = useState(ITENS_POR_PAGINA);
 
   const categoriaLabelPorId = useMemo(
     () => new Map(categorias.map((c) => [c.id, c.label])),
     [categorias],
   );
 
-  const visiveis = useMemo(() => {
+  const filtrados = useMemo(() => {
     const termo = normalizar(busca.trim());
     return equipamentos.filter((equipamento) => {
       const combinaCategoria =
@@ -30,6 +33,19 @@ export default function CatalogoFiltro({ equipamentos, categorias }: CatalogoFil
       return combinaCategoria && combinaBusca;
     });
   }, [equipamentos, busca, categoriaAtiva]);
+
+  const visiveis = filtrados.slice(0, limite);
+  const temMais = filtrados.length > visiveis.length;
+
+  function atualizarBusca(valor: string) {
+    setBusca(valor);
+    setLimite(ITENS_POR_PAGINA);
+  }
+
+  function atualizarCategoria(valor: string) {
+    setCategoriaAtiva(valor);
+    setLimite(ITENS_POR_PAGINA);
+  }
 
   return (
     <div>
@@ -45,7 +61,7 @@ export default function CatalogoFiltro({ equipamentos, categorias }: CatalogoFil
             className="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 text-sm text-graphite-900 placeholder:text-graphite-700/60 focus-visible:border-accent-dark"
             autoComplete="off"
             value={busca}
-            onChange={(e) => setBusca(e.target.value)}
+            onChange={(e) => atualizarBusca(e.target.value)}
           />
         </div>
 
@@ -59,7 +75,7 @@ export default function CatalogoFiltro({ equipamentos, categorias }: CatalogoFil
             className="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark"
             data-active={categoriaAtiva === "todos"}
             aria-pressed={categoriaAtiva === "todos"}
-            onClick={() => setCategoriaAtiva("todos")}
+            onClick={() => atualizarCategoria("todos")}
           >
             Todos
           </button>
@@ -70,7 +86,7 @@ export default function CatalogoFiltro({ equipamentos, categorias }: CatalogoFil
               className="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
               data-active={categoriaAtiva === categoria.id}
               aria-pressed={categoriaAtiva === categoria.id}
-              onClick={() => setCategoriaAtiva(categoria.id)}
+              onClick={() => atualizarCategoria(categoria.id)}
             >
               {categoria.label}
             </button>
@@ -79,19 +95,33 @@ export default function CatalogoFiltro({ equipamentos, categorias }: CatalogoFil
       </div>
 
       {visiveis.length > 0 ? (
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {visiveis.map((equipamento) => (
-            <CardEquipamento
-              key={equipamento.slug}
-              equipamento={equipamento}
-              categoriaLabel={
-                categoriaLabelPorId.get(equipamento.categoria) ??
-                equipamento.categoria
-              }
-              temFoto={equipamento.temFoto}
-            />
-          ))}
-        </div>
+        <>
+          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {visiveis.map((equipamento) => (
+              <CardEquipamento
+                key={equipamento.slug}
+                equipamento={equipamento}
+                categoriaLabel={
+                  categoriaLabelPorId.get(equipamento.categoria) ??
+                  equipamento.categoria
+                }
+                temFoto={equipamento.temFoto}
+              />
+            ))}
+          </div>
+
+          {temMais && (
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                className="cursor-pointer rounded-sm border border-graphite-300 px-5 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:border-accent hover:text-accent-dark"
+                onClick={() => setLimite((atual) => atual + ITENS_POR_PAGINA)}
+              >
+                Ver mais
+              </button>
+            </div>
+          )}
+        </>
       ) : (
         <div className="py-16 text-center">
           <p className="font-display text-xl text-graphite-900">
