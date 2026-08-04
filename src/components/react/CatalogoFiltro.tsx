@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import type { Categoria, Equipamento } from "../../data/equipamentos";
 import { normalizar } from "../../lib/formato";
 import { linkWhatsApp, MENSAGEM_GERAL } from "../../lib/whatsapp";
-import CardEquipamentoReact from "./CardEquipamentoReact";
+import CardEquipamento from "./CardEquipamento";
 
 type EquipamentoComFoto = Equipamento & { temFoto: boolean };
 
@@ -85,7 +85,7 @@ export default function CatalogoFiltro({ equipamentos, categorias }: Props) {
       {visiveis.length > 0 ? (
         <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {visiveis.map((equipamento) => (
-            <CardEquipamentoReact
+            <CardEquipamento
               key={equipamento.slug}
               equipamento={equipamento}
               categoriaLabel={
