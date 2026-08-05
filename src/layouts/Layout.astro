@@ -4,6 +4,7 @@ import { Font } from "astro:assets";
 import SEO from "../components/SEO.astro";
 import Pixel from "../components/Pixel.astro";
 import PixelEvents from "../components/PixelEvents.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 
 const titulo = "Eleve Locações";
 const descricao =
@@ -27,5 +28,6 @@ const descricao =
   <body class="font-sans">
     <slot />
     <PixelEvents />
+    <CookieConsent />
   </body>
 </html>

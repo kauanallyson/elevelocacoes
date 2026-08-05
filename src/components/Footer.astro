@@ -79,6 +79,13 @@ const footerIcons = [
         Preços podem sofrer reajuste e devem ser confirmados no atendimento.
       </p>
       <p class="mt-1 text-sm text-graphite-300">© {anoAtual} Eleve Locações</p>
+      <button
+        id="cookie-preferences"
+        type="button"
+        class="text-xs text-graphite-300/70 underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent"
+      >
+        Preferências de cookies
+      </button>
     </div>
 
     <div
@@ -98,3 +105,11 @@ const footerIcons = [
     </div>
   </div>
 </footer>
+
+<script>
+  import { clearConsent } from "../lib/consent";
+
+  document
+    .getElementById("cookie-preferences")
+    ?.addEventListener("click", clearConsent);
+</script>
