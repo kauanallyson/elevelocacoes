@@ -1,40 +1,13 @@
 ---
 import "../styles/global.css";
 import { Font } from "astro:assets";
+import SEO from "../components/SEO.astro";
+import Pixel from "../components/Pixel.astro";
 import PixelEvents from "../components/PixelEvents.astro";
-
-const PIXEL_ID = "1761995821596014";
 
 const titulo = "Eleve Locações";
 const descricao =
   "Locação de andaimes, betoneiras, martelos demolidores, geradores e outros equipamentos para construção civil em Sobral-CE.";
-const url =
-  Astro.site ?? new URL(Astro.url.pathname, "https://elevelocacoes.com.br");
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Eleve Locações de Equipamentos",
-  image: "https://elevelocacoes.com.br/logo-eleve.png",
-  telephone: "+5588999983050",
-  email: "elevelocacoes@gmail.com",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress:
-      "Rua Dr. Ronaldo Ponte Dias, 1279, Bairro Antônio Carlos Belchior",
-    addressLocality: "Sobral",
-    addressRegion: "CE",
-    addressCountry: "BR",
-  },
-  areaServed: ["Sobral", "Preá"],
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    opens: "07:30",
-    closes: "17:00",
-  },
-  sameAs: ["https://www.instagram.com/elevelocacoes/"],
-};
 ---
 
 <!doctype html>
@@ -42,77 +15,14 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" href="/favicon-48x48.png" />
-    <meta name="generator" content={Astro.generator} />
 
-    <title>{titulo}</title>
-    <meta name="description" content={descricao} />
-    <link rel="canonical" href={url} />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:title" content={titulo} />
-    <meta property="og:description" content={descricao} />
-    <meta property="og:url" content={url} />
-    <meta property="og:image" content={new URL("/og-image.png", url)} />
-    <meta property="og:image:width" content="1080" />
-    <meta property="og:image:height" content="1080" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content={titulo} />
-    <meta name="twitter:description" content={descricao} />
-    <meta name="twitter:image" content={new URL("/og-image.png", url)} />
+    <SEO titulo={titulo} descricao={descricao} />
 
     <Font cssVariable="--font-big-shoulders" preload />
     <Font cssVariable="--font-plex-sans" preload />
     <Font cssVariable="--font-plex-mono" />
 
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(jsonLd)}
-      is:inline
-    />
-
-    <!-- Meta Pixel Code -->
-    <script is:inline define:vars={{ PIXEL_ID }}>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = "2.0";
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js",
-      );
-      fbq("init", PIXEL_ID);
-      fbq("track", "PageView");
-    </script>
-    <noscript>
-      <img
-        height="1"
-        width="1"
-        style="display:none"
-        src=`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`
-      />
-    </noscript>
-    <!-- End Meta Pixel Code -->
+    <Pixel />
   </head>
   <body class="font-sans">
     <slot />
