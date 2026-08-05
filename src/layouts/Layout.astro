@@ -58,6 +58,13 @@ const jsonLd = {
     <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descricao} />
     <meta property="og:url" content={url} />
+    <meta property="og:image" content={new URL("/og-image.png", url)} />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="1080" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={titulo} />
+    <meta name="twitter:description" content={descricao} />
+    <meta name="twitter:image" content={new URL("/og-image.png", url)} />
 
     <Font cssVariable="--font-big-shoulders" preload />
     <Font cssVariable="--font-plex-sans" preload />
