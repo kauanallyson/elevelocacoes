@@ -1,18 +1,27 @@
 <script>
   declare const fbq: (...args: unknown[]) => void;
 
+  const handlers: Record<string, (alvo: HTMLElement) => void> = {
+    whatsapp: () => {
+      fbq("track", "Contact");
+      fbq("track", "Lead");
+    },
+    produto: (alvo) => {
+      fbq("track", "ViewContent", {
+        content_name: alvo.dataset.produtoNome,
+      });
+    },
+    localizacao: () => {
+      fbq("track", "FindLocation");
+    },
+  };
+
   document.addEventListener("click", (event) => {
     const alvo = (event.target as HTMLElement).closest<HTMLElement>(
       "[data-pixel]",
     );
     if (!alvo) return;
 
-    if (alvo.dataset.pixel === "whatsapp") {
-      fbq("track", "Contact");
-    } else if (alvo.dataset.pixel === "produto") {
-      fbq("track", "ViewContent", {
-        content_name: alvo.dataset.produtoNome,
-      });
-    }
+    handlers[alvo.dataset.pixel ?? ""]?.(alvo);
   });
 </script>
