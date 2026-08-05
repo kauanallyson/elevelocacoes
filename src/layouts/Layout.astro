@@ -1,7 +1,9 @@
 ---
 import "../styles/global.css";
 import { Font } from "astro:assets";
-import { PIXEL_ID } from "astro:env/client";
+import PixelEvents from "../components/PixelEvents.astro";
+
+const PIXEL_ID = "1761995821596014";
 
 const titulo = "Eleve Locações";
 const descricao =
@@ -89,7 +91,7 @@ const jsonLd = {
         "script",
         "https://connect.facebook.net/en_US/fbevents.js",
       );
-      fbq("init", "1761995821596014");
+      fbq("init", PIXEL_ID);
       fbq("track", "PageView");
     </script>
     <noscript>
@@ -104,5 +106,6 @@ const jsonLd = {
   </head>
   <body class="font-sans">
     <slot />
+    <PixelEvents />
   </body>
 </html>

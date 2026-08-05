@@ -5,7 +5,9 @@ import { CATEGORIAS, EQUIPAMENTOS } from "../data/equipamentos";
 import { linkWhatsApp, MENSAGEM_GERAL } from "../lib/whatsapp";
 import CardEquipamento from "./CardEquipamento.astro";
 
-const ITENS_POR_PAGINA = 4;
+const { preview = false } = Astro.props;
+
+const ITENS_PREVIA = 4;
 
 const equipamentosComFoto = EQUIPAMENTOS.map((equipamento) => ({
   ...equipamento,
@@ -13,6 +15,10 @@ const equipamentosComFoto = EQUIPAMENTOS.map((equipamento) => ({
     path.resolve("public/produtos", `${equipamento.slug}.jpg`),
   ),
 }));
+
+const equipamentosExibidos = preview
+  ? equipamentosComFoto.slice(0, ITENS_PREVIA)
+  : equipamentosComFoto;
 
 const categoriaLabelPorId = new Map(
   CATEGORIAS.map((c) => [c.id, c.label] as const),
@@ -32,126 +38,132 @@ const categoriaLabelPorId = new Map(
       </h2>
     </div>
 
-    <div id="catalogo-filtro" data-itens-por-pagina={ITENS_POR_PAGINA}>
-      <div class="mt-8 flex flex-col gap-4">
-        <div class="relative max-w-md">
-          <label for="busca-equipamento" class="sr-only">
-            Buscar equipamento pelo nome
-          </label>
-          <input
-            id="busca-equipamento"
-            type="search"
-            placeholder="Buscar equipamento (ex: betoneira, escora, martelo...)"
-            class="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 text-sm text-graphite-900 placeholder:text-graphite-700/60 focus-visible:border-accent-dark"
-            autocomplete="off"
-          />
-        </div>
+    {
+      preview ? (
+        <>
+          <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {equipamentosExibidos.map((equipamento) => (
+              <CardEquipamento
+                equipamento={equipamento}
+                categoriaLabel={
+                  categoriaLabelPorId.get(equipamento.categoria) ??
+                  equipamento.categoria
+                }
+                temFoto={equipamento.temFoto}
+              />
+            ))}
+          </div>
 
-        <div
-          class="flex flex-wrap gap-2"
-          role="group"
-          aria-label="Filtrar por categoria"
-        >
-          <button
-            type="button"
-            class="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
-            data-categoria="todos"
-            data-active="true"
-            aria-pressed="true"
-          >
-            Todos
-          </button>
-          {
-            CATEGORIAS.map((categoria) => (
+          <div class="mt-8 flex justify-center">
+            <a
+              href="/catalogo"
+              class="inline-flex items-center justify-center rounded-sm border border-graphite-300 px-5 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:border-accent hover:text-accent-dark"
+            >
+              Ver catálogo completo
+            </a>
+          </div>
+        </>
+      ) : (
+        <div id="catalogo-filtro">
+          <div class="sticky top-16 z-30 -mx-4 flex flex-col gap-4 border-b border-graphite-100 bg-white/95 px-4 py-4 backdrop-blur sm:-mx-6 sm:px-6">
+            <div class="relative max-w-md">
+              <label for="busca-equipamento" class="sr-only">
+                Buscar equipamento pelo nome
+              </label>
+              <input
+                id="busca-equipamento"
+                type="search"
+                placeholder="Buscar equipamento (ex: betoneira, escora, martelo...)"
+                class="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 text-sm text-graphite-900 placeholder:text-graphite-700/60 focus-visible:border-accent-dark"
+                autocomplete="off"
+              />
+            </div>
+
+            <div
+              class="flex flex-wrap gap-2"
+              role="group"
+              aria-label="Filtrar por categoria"
+            >
               <button
                 type="button"
                 class="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
-                data-categoria={categoria.id}
-                data-active="false"
-                aria-pressed="false"
+                data-categoria="todos"
+                data-active="true"
+                aria-pressed="true"
               >
-                {categoria.label}
+                Todos
               </button>
-            ))
-          }
+              {CATEGORIAS.map((categoria) => (
+                <button
+                  type="button"
+                  class="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
+                  data-categoria={categoria.id}
+                  data-active="false"
+                  aria-pressed="false"
+                >
+                  {categoria.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div
+            id="catalogo-grid"
+            class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
+            {equipamentosExibidos.map((equipamento) => (
+              <CardEquipamento
+                equipamento={equipamento}
+                categoriaLabel={
+                  categoriaLabelPorId.get(equipamento.categoria) ??
+                  equipamento.categoria
+                }
+                temFoto={equipamento.temFoto}
+              />
+            ))}
+          </div>
+
+          <div id="catalogo-vazio" class="hidden py-16 text-center">
+            <p class="font-display text-xl text-graphite-900">
+              Nenhum equipamento encontrado
+            </p>
+            <p class="mt-2 text-graphite-700">
+              Não achou o que precisa no catálogo? Chame no WhatsApp — a gente
+              pode ter o equipamento fora da lista.
+            </p>
+            <a
+              href={linkWhatsApp(MENSAGEM_GERAL)}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-pixel="whatsapp"
+              class="mt-5 inline-flex items-center justify-center rounded-sm bg-accent px-5 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
+            >
+              Falar no WhatsApp
+            </a>
+          </div>
         </div>
-      </div>
-
-      <div
-        id="catalogo-grid"
-        class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-      >
-        {
-          equipamentosComFoto.map((equipamento) => (
-            <CardEquipamento
-              equipamento={equipamento}
-              categoriaLabel={
-                categoriaLabelPorId.get(equipamento.categoria) ??
-                equipamento.categoria
-              }
-              temFoto={equipamento.temFoto}
-            />
-          ))
-        }
-      </div>
-
-      <div id="catalogo-vazio" class="hidden py-16 text-center">
-        <p class="font-display text-xl text-graphite-900">
-          Nenhum equipamento encontrado
-        </p>
-        <p class="mt-2 text-graphite-700">
-          Não achou o que precisa no catálogo? Chame no WhatsApp — a gente
-          pode ter o equipamento fora da lista.
-        </p>
-        <a
-          href={linkWhatsApp(MENSAGEM_GERAL)}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-5 inline-flex items-center justify-center rounded-sm bg-accent px-5 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
-        >
-          Falar no WhatsApp
-        </a>
-      </div>
-
-      <div class="mt-8 flex justify-center">
-        <button
-          type="button"
-          id="catalogo-ver-mais"
-          class="hidden cursor-pointer rounded-sm border border-graphite-300 px-5 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:border-accent hover:text-accent-dark"
-        >
-          Ver mais
-        </button>
-      </div>
-    </div>
+      )
+    }
   </div>
 </section>
 
 <script>
   function normalizar(texto: string) {
-    return texto
-      .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "")
-      .toLowerCase();
+    return texto.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   }
 
   const raiz = document.getElementById("catalogo-filtro");
   if (raiz) {
-    const itensPorPagina = Number(raiz.dataset.itensPorPagina ?? "4");
-    const inputBusca = raiz.querySelector<HTMLInputElement>(
-      "#busca-equipamento",
-    );
+    const inputBusca =
+      raiz.querySelector<HTMLInputElement>("#busca-equipamento");
     const chips = raiz.querySelectorAll<HTMLButtonElement>(".chip-categoria");
     const cards = Array.from(
       raiz.querySelectorAll<HTMLElement>("#catalogo-grid [data-card]"),
     );
     const grid = raiz.querySelector<HTMLElement>("#catalogo-grid");
     const vazio = raiz.querySelector<HTMLElement>("#catalogo-vazio");
-    const botaoVerMais = raiz.querySelector<HTMLButtonElement>(
-      "#catalogo-ver-mais",
-    );
 
     let categoriaAtiva = "todos";
-    let limite = itensPorPagina;
 
     function aplicarFiltro() {
       const termo = normalizar((inputBusca?.value ?? "").trim());
@@ -165,30 +177,22 @@ const categoriaLabelPorId = new Map(
         return combinaCategoria && combinaBusca;
       });
 
-      const visiveis = combinam.slice(0, limite);
-      const visiveisSet = new Set(visiveis);
+      const combinamSet = new Set(combinam);
 
       for (const card of cards) {
-        card.classList.toggle("hidden", !visiveisSet.has(card));
+        card.classList.toggle("hidden", !combinamSet.has(card));
       }
 
       const temResultado = combinam.length > 0;
       grid?.classList.toggle("hidden", !temResultado);
       vazio?.classList.toggle("hidden", temResultado);
-
-      const temMais = combinam.length > visiveis.length;
-      botaoVerMais?.classList.toggle("hidden", !temMais);
     }
 
-    inputBusca?.addEventListener("input", () => {
-      limite = itensPorPagina;
-      aplicarFiltro();
-    });
+    inputBusca?.addEventListener("input", aplicarFiltro);
 
     for (const chip of chips) {
       chip.addEventListener("click", () => {
         categoriaAtiva = chip.dataset.categoria ?? "todos";
-        limite = itensPorPagina;
         for (const outro of chips) {
           const ativo = outro === chip;
           outro.dataset.active = String(ativo);
@@ -197,11 +201,6 @@ const categoriaLabelPorId = new Map(
         aplicarFiltro();
       });
     }
-
-    botaoVerMais?.addEventListener("click", () => {
-      limite += itensPorPagina;
-      aplicarFiltro();
-    });
 
     aplicarFiltro();
   }

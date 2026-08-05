@@ -1,0 +1,18 @@
+<script>
+  declare const fbq: (...args: unknown[]) => void;
+
+  document.addEventListener("click", (event) => {
+    const alvo = (event.target as HTMLElement).closest<HTMLElement>(
+      "[data-pixel]",
+    );
+    if (!alvo) return;
+
+    if (alvo.dataset.pixel === "whatsapp") {
+      fbq("track", "Contact");
+    } else if (alvo.dataset.pixel === "produto") {
+      fbq("track", "ViewContent", {
+        content_name: alvo.dataset.produtoNome,
+      });
+    }
+  });
+</script>

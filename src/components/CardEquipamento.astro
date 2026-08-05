@@ -18,6 +18,8 @@ const { slug, nome, tipoPreco, precos, descricao } = equipamento;
   data-card
   data-nome={nome}
   data-categoria={equipamento.categoria}
+  data-pixel="produto"
+  data-produto-nome={nome}
 >
   <div class="relative aspect-4/3 w-full overflow-hidden bg-graphite-900">
     {
@@ -98,43 +100,32 @@ const { slug, nome, tipoPreco, precos, descricao } = equipamento;
                 peça/dia
               </span>
             </p>
-            <p class="mt-2 text-sm text-graphite-700">
-              No plano mensal cai para{" "}
-              <strong class="font-mono font-semibold text-graphite-900">
-                {formatBRL(precos.mes)} peça/dia
-              </strong>
-            </p>
-            <details class="mt-2 text-sm text-graphite-700">
-              <summary class="cursor-pointer font-medium text-accent-dark">
-                Ver todos os prazos (por peça/dia)
-              </summary>
-              <dl class="mt-2 space-y-1">
-                <div class="flex justify-between">
-                  <dt>Dia</dt>
-                  <dd class="font-mono text-graphite-900">
-                    {formatBRL(precos.dia)}
-                  </dd>
-                </div>
-                <div class="flex justify-between">
-                  <dt>Semana</dt>
-                  <dd class="font-mono text-graphite-900">
-                    {formatBRL(precos.semana)}
-                  </dd>
-                </div>
-                <div class="flex justify-between">
-                  <dt>Quinzena</dt>
-                  <dd class="font-mono text-graphite-900">
-                    {formatBRL(precos.quinzena)}
-                  </dd>
-                </div>
-                <div class="flex justify-between">
-                  <dt>Mês</dt>
-                  <dd class="font-mono text-graphite-900">
-                    {formatBRL(precos.mes)}
-                  </dd>
-                </div>
-              </dl>
-            </details>
+            <dl class="mt-2 space-y-1 text-sm text-graphite-700">
+              <div class="flex justify-between">
+                <dt>Dia</dt>
+                <dd class="font-mono text-graphite-900">
+                  {formatBRL(precos.dia)}
+                </dd>
+              </div>
+              <div class="flex justify-between">
+                <dt>Semana</dt>
+                <dd class="font-mono text-graphite-900">
+                  {formatBRL(precos.semana)}
+                </dd>
+              </div>
+              <div class="flex justify-between">
+                <dt>Quinzena</dt>
+                <dd class="font-mono text-graphite-900">
+                  {formatBRL(precos.quinzena)}
+                </dd>
+              </div>
+              <div class="flex justify-between">
+                <dt>Mês</dt>
+                <dd class="font-mono text-graphite-900">
+                  {formatBRL(precos.mes)}
+                </dd>
+              </div>
+            </dl>
           </>
         )
       }
@@ -144,6 +135,7 @@ const { slug, nome, tipoPreco, precos, descricao } = equipamento;
       href={linkWhatsApp(mensagemProduto(nome))}
       target="_blank"
       rel="noopener noreferrer"
+      data-pixel="whatsapp"
       class="mt-1 inline-flex items-center justify-center rounded-sm bg-accent px-4 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
     >
       Alugar no WhatsApp

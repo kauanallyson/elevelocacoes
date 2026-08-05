@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, envField, fontProviders } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
@@ -31,10 +31,4 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
-  env: {
-    schema: {
-      PIXEL_ID: envField.string({ context: "client", access: "public", optional: false })
-    }
-  }
 });
