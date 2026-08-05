@@ -2,10 +2,11 @@
 import "../styles/global.css";
 import { Font } from "astro:assets";
 
-const titulo = "Eleve Locações — Aluguel de Equipamentos em Sobral-CE";
+const titulo = "Eleve Locações";
 const descricao =
-  "Locação de andaimes, betoneiras, martelos demolidores, geradores e mais de 40 equipamentos para construção civil em Sobral e Preá-CE. Peça no WhatsApp.";
-const url = Astro.site ?? new URL(Astro.url.pathname, "https://elevelocacoes.com.br");
+  "Locação de andaimes, betoneiras, martelos demolidores, geradores e outros equipamentos para construção civil em Sobral-CE.";
+const url =
+  Astro.site ?? new URL(Astro.url.pathname, "https://elevelocacoes.com.br");
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -16,7 +17,8 @@ const jsonLd = {
   email: "elevelocacoes@gmail.com",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Rua Dr. Ronaldo Ponte Dias, 1279 — Bairro Antônio Carlos Belchior",
+    streetAddress:
+      "Rua Dr. Ronaldo Ponte Dias, 1279, Bairro Antônio Carlos Belchior",
     addressLocality: "Sobral",
     addressRegion: "CE",
     addressCountry: "BR",
@@ -24,13 +26,7 @@ const jsonLd = {
   areaServed: ["Sobral", "Preá"],
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-    ],
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
     opens: "07:30",
     closes: "17:00",
   },
@@ -61,7 +57,11 @@ const jsonLd = {
     <Font cssVariable="--font-plex-sans" preload />
     <Font cssVariable="--font-plex-mono" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+      is:inline
+    />
   </head>
   <body class="font-sans">
     <slot />
