@@ -1,7 +1,10 @@
 ---
 import { linkWhatsApp, MENSAGEM_GERAL } from "../lib/whatsapp";
+import { Image } from "astro:assets";
+import logoQuadrada from "../assets/logo1x1.png";
 
 const links = [
+  { href: "/", label: "Início" },
   { href: "/catalogo", label: "Catálogo" },
   { href: "#contato", label: "Contato" },
 ];
@@ -13,11 +16,12 @@ const links = [
   <div
     class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6"
   >
-    <a href="#inicio" class="shrink-0">
-      <img
-        src="/logo-eleve.png"
+    <a href="/" class="shrink-0">
+      <Image
+        src={logoQuadrada}
         alt="Eleve Locações de Equipamentos"
-        class="h-11 w-11 rounded-sm"
+        class="h-10 w-10"
+        loading="eager"
       />
     </a>
 

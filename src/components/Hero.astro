@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import logoHorizontal from "../assets/logo3x1-no-bg.png";
 import { linkWhatsApp, MENSAGEM_GERAL } from "../lib/whatsapp";
 
 const credibilidade = [
@@ -8,26 +10,26 @@ const credibilidade = [
 ];
 ---
 
-<section id="inicio" class="relative overflow-hidden bg-graphite-900 pt-16">
+<section class="relative overflow-hidden bg-graphite-900 pt-16">
   <div
-    class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:py-20"
+    class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.2fr_1fr] lg:items-stretch lg:py-20"
   >
     <div>
       <p
-        class="font-mono text-xs font-medium uppercase tracking-[0.2em] text-accent"
+        class="font-mono text-xs font-medium uppercase tracking-[0.25em] text-accent"
       >
-        Sobral · CE — locação de equipamentos
+        Sobral-CE locação de equipamentos
       </p>
       <h1
         class="mt-5 font-display text-[2.5rem] leading-[1.05] tracking-tight text-white sm:text-6xl"
       >
         Equipamentos para sua obra, prontos para{" "}
-        <span class="text-accent">retirada em Sobral.</span>
+        <span class="text-accent">entrega em Sobral.</span>
       </h1>
       <p class="mt-6 max-w-xl text-base leading-relaxed sm:text-lg">
         Andaimes, betoneiras, martelos, geradores e mais de 40 equipamentos para
-        construção civil. Escolha, confirme o preço e chame no WhatsApp — sem
-        cadastro, sem burocracia.
+        construção civil. Escolha, confirme o preço e chame no WhatsApp, sem
+        burocracia.
       </p>
 
       <div class="mt-8 flex flex-wrap items-center gap-4">
@@ -49,19 +51,32 @@ const credibilidade = [
       </div>
     </div>
 
-    <dl
-      class="grid gap-5 border-t border-graphite-700 pt-6 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-0"
+    <div
+      class="flex flex-col justify-between border-t border-graphite-700 pt-6 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-0"
     >
-      {
-        credibilidade.map((item) => (
-          <div class="flex items-baseline gap-3">
-            <span class="h-2 w-2 shrink-0 bg-accent" aria-hidden="true" />
-            <dd class="text-sm font-medium text-graphite-100 sm:text-base">
-              {item}
-            </dd>
-          </div>
-        ))
-      }
-    </dl>
+      <div
+        class="hidden flex-1 items-center justify-center py-6 sm:flex lg:py-8"
+      >
+        <Image
+          src={logoHorizontal}
+          alt="Eleve Locações de Equipamentos"
+          class="w-full max-w-md rounded-sm lg:max-w-lg"
+          loading="eager"
+        />
+      </div>
+
+      <dl class="grid gap-5">
+        {
+          credibilidade.map((item) => (
+            <div class="flex items-baseline gap-3">
+              <span class="h-2 w-2 shrink-0 bg-accent" aria-hidden="true" />
+              <dd class="text-sm font-medium text-graphite-100 sm:text-base">
+                {item}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
   </div>
 </section>

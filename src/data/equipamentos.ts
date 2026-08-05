@@ -34,7 +34,7 @@ export type Equipamento = {
 };
 
 export const EQUIPAMENTOS: Equipamento[] = [
-  // Andaimes e Escoramento — peça/dia
+  // Andaimes e Escoramento - peça/dia
   {
     slug: "barra-de-ancoragem-070m",
     nome: "Barra de Ancoragem 0,70m",
