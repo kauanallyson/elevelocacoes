@@ -2,6 +2,18 @@
 import { formatBRL } from "../lib/formato";
 import { linkWhatsApp, mensagemProduto } from "../lib/whatsapp";
 import type { Equipamento } from "../data/equipamentos";
+import { Image } from "astro:assets";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/produtos/*.{jpeg,jpg,png,gif,webp}",
+);
+
+const imagensPorSlug = Object.fromEntries(
+  Object.entries(images).map(([caminho, carregarImagem]) => [
+    caminho.replace(/^.*\//, "").replace(/\.[^.]+$/, ""),
+    carregarImagem,
+  ]),
+);
 
 type Props = {
   equipamento: Equipamento;
@@ -24,10 +36,10 @@ const { slug, nome, tipoPreco, precos, descricao } = equipamento;
   <div class="relative aspect-4/3 w-full overflow-hidden bg-graphite-900">
     {
       temFoto ? (
-        <img
-          src={`/produtos/${slug}.jpg`}
+        <Image
+          src={imagensPorSlug[slug]()}
           alt={nome}
-          loading="lazy"
+          loading="eager"
           class="h-full w-full object-cover"
         />
       ) : (
@@ -52,7 +64,9 @@ const { slug, nome, tipoPreco, precos, descricao } = equipamento;
 
   <div class="flex flex-1 flex-col gap-3 p-4">
     <div>
-      <p class="font-mono text-[11px] uppercase tracking-wide text-graphite-700">
+      <p
+        class="font-mono text-[11px] uppercase tracking-wide text-graphite-700"
+      >
         {categoriaLabel}
       </p>
       <h3 class="mt-1 font-display text-lg leading-tight text-graphite-900">
@@ -138,7 +152,7 @@ const { slug, nome, tipoPreco, precos, descricao } = equipamento;
       data-pixel="whatsapp"
       class="mt-1 inline-flex items-center justify-center rounded-sm bg-accent px-4 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
     >
-      Alugar no WhatsApp
+      Quero um orçamento
     </a>
   </div>
 </article>
