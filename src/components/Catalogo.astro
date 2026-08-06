@@ -5,27 +5,19 @@ import { CATEGORIAS, EQUIPAMENTOS } from "../data/equipamentos";
 import { linkWhatsApp, MENSAGEM_GERAL } from "../lib/whatsapp";
 import CardEquipamento from "./CardEquipamento.astro";
 
-const { preview = false } = Astro.props;
-
-const ITENS_PREVIA = 4;
-
-const equipamentosComFoto = EQUIPAMENTOS.map((equipamento) => ({
+const equipamentosExibidos = EQUIPAMENTOS.map((equipamento) => ({
   ...equipamento,
   temFoto: fs.existsSync(
     path.resolve("src/assets/produtos", `${equipamento.slug}.webp`),
   ),
 }));
 
-const equipamentosExibidos = preview
-  ? equipamentosComFoto.slice(0, ITENS_PREVIA)
-  : equipamentosComFoto;
-
 const categoriaLabelPorId = new Map(
   CATEGORIAS.map((c) => [c.id, c.label] as const),
 );
 ---
 
-<section id="catalogo" class="bg-white py-4 sm:py-8">
+<section id="catalogo" class="bg-white py-8 sm:py-16">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <div class="max-w-2xl">
       <p class="font-mono font-medium uppercase text-accent-dark text-xl">
@@ -38,112 +30,90 @@ const categoriaLabelPorId = new Map(
       </h2>
     </div>
 
-    {
-      preview ? (
-        <>
-          <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {equipamentosExibidos.map((equipamento) => (
-              <CardEquipamento
-                equipamento={equipamento}
-                categoriaLabel={
-                  categoriaLabelPorId.get(equipamento.categoria) ??
-                  equipamento.categoria
-                }
-                temFoto={equipamento.temFoto}
-              />
-            ))}
-          </div>
+    <div id="catalogo-filtro">
+      <div
+        class="sticky top-16 z-30 -mx-4 flex flex-col gap-4 border-b border-graphite-100 bg-white/95 px-4 py-4 backdrop-blur sm:-mx-6 sm:px-6"
+      >
+        <div class="relative max-w-md">
+          <label for="busca-equipamento" class="sr-only">
+            Buscar equipamento pelo nome
+          </label>
+          <input
+            id="busca-equipamento"
+            type="search"
+            placeholder="Buscar equipamento (ex: betoneira, escora, martelo...)"
+            class="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 text-sm text-graphite-900 placeholder:text-graphite-700/60 focus-visible:border-accent-dark"
+            autocomplete="off"
+          />
+        </div>
 
-          <div class="mt-8 flex justify-center">
-            <a
-              href="/catalogo"
-              class="inline-flex items-center justify-center rounded-sm border border-graphite-300 px-5 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:border-accent hover:text-accent-dark"
-            >
-              Ver catálogo completo
-            </a>
-          </div>
-        </>
-      ) : (
-        <div id="catalogo-filtro">
-          <div class="sticky top-16 z-30 -mx-4 flex flex-col gap-4 border-b border-graphite-100 bg-white/95 px-4 py-4 backdrop-blur sm:-mx-6 sm:px-6">
-            <div class="relative max-w-md">
-              <label for="busca-equipamento" class="sr-only">
-                Buscar equipamento pelo nome
-              </label>
-              <input
-                id="busca-equipamento"
-                type="search"
-                placeholder="Buscar equipamento (ex: betoneira, escora, martelo...)"
-                class="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 text-sm text-graphite-900 placeholder:text-graphite-700/60 focus-visible:border-accent-dark"
-                autocomplete="off"
-              />
-            </div>
-
-            <div
-              class="flex flex-wrap gap-2"
-              role="group"
-              aria-label="Filtrar por categoria"
-            >
+        <div
+          class="flex flex-wrap gap-2"
+          role="group"
+          aria-label="Filtrar por categoria"
+        >
+          <button
+            type="button"
+            class="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
+            data-categoria="todos"
+            data-active="true"
+            aria-pressed="true"
+          >
+            Todos
+          </button>
+          {
+            CATEGORIAS.map((categoria) => (
               <button
                 type="button"
                 class="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
-                data-categoria="todos"
-                data-active="true"
-                aria-pressed="true"
+                data-categoria={categoria.id}
+                data-active="false"
+                aria-pressed="false"
               >
-                Todos
+                {categoria.label}
               </button>
-              {CATEGORIAS.map((categoria) => (
-                <button
-                  type="button"
-                  class="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
-                  data-categoria={categoria.id}
-                  data-active="false"
-                  aria-pressed="false"
-                >
-                  {categoria.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div
-            id="catalogo-grid"
-            class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-          >
-            {equipamentosExibidos.map((equipamento) => (
-              <CardEquipamento
-                equipamento={equipamento}
-                categoriaLabel={
-                  categoriaLabelPorId.get(equipamento.categoria) ??
-                  equipamento.categoria
-                }
-                temFoto={equipamento.temFoto}
-              />
-            ))}
-          </div>
-
-          <div id="catalogo-vazio" class="hidden py-16 text-center">
-            <p class="font-display text-xl text-graphite-900">
-              Nenhum equipamento encontrado
-            </p>
-            <p class="mt-2 text-graphite-700">
-              Não achou o que precisa no catálogo? Chame no WhatsApp a gente
-              pode ter o equipamento fora da lista.
-            </p>
-            <a
-              href={linkWhatsApp(MENSAGEM_GERAL)}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-pixel="whatsapp"
-              class="mt-5 inline-flex items-center justify-center rounded-sm bg-accent px-5 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
-            >
-              Falar no WhatsApp
-            </a>
-          </div>
+            ))
+          }
         </div>
-      )
-    }
+      </div>
+
+      <div
+        id="catalogo-grid"
+        class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-3 lg:grid-cols-4"
+      >
+        {
+          equipamentosExibidos.map((equipamento) => (
+            <CardEquipamento
+              equipamento={equipamento}
+              categoriaLabel={
+                categoriaLabelPorId.get(equipamento.categoria) ??
+                equipamento.categoria
+              }
+              temFoto={equipamento.temFoto}
+            />
+          ))
+        }
+      </div>
+
+      <div id="catalogo-vazio" class="hidden py-16 text-center">
+        <p class="font-display text-xl text-graphite-900">
+          Nenhum equipamento encontrado
+        </p>
+        <p class="mt-2 text-graphite-700">
+          Não achou o que precisa no catálogo? Chame no WhatsApp a gente pode
+          ter o equipamento fora da lista.
+        </p>
+        <a
+          href={linkWhatsApp(MENSAGEM_GERAL)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-pixel="whatsapp"
+          class="mt-5 inline-flex items-center justify-center rounded-sm bg-accent px-5 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
+        >
+          Falar no WhatsApp
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 

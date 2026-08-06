@@ -1,77 +1,12 @@
 ---
-import { linkWhatsApp, MENSAGEM_GERAL } from "../lib/whatsapp";
-import MapPinIcon from "./icons/MapPinIcon.astro";
-import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
-import InstagramIcon from "./icons/InstagramIcon.astro";
-import MailIcon from "./icons/MailIcon.astro";
-import ClockIcon from "./icons/ClockIcon.astro";
-
 const anoAtual = new Date().getFullYear();
-
-const ENDERECO_MAPS =
-  "https://www.google.com/maps/search/?api=1&query=Eleve+Loca%C3%A7%C3%B5es+Sobral+CE";
-const INSTAGRAM = "https://www.instagram.com/elevelocacoes/";
-const EMAIL = "elevelocacoes@gmail.com";
-const HORARIO = "Segunda a sexta, 7h30 às 12h e 13h30 às 17h";
-
-const footerIcons = [
-  {
-    label: "Ver endereço no Google Maps",
-    href: ENDERECO_MAPS,
-    external: true,
-    pixel: "localizacao",
-    Icon: MapPinIcon,
-  },
-  {
-    label: "Chamar a Eleve Locações no WhatsApp",
-    href: linkWhatsApp(MENSAGEM_GERAL),
-    external: true,
-    Icon: WhatsAppIcon,
-  },
-  {
-    label: "Seguir a Eleve Locações no Instagram",
-    href: INSTAGRAM,
-    external: true,
-    Icon: InstagramIcon,
-  },
-  {
-    label: "Enviar e-mail para a Eleve Locações",
-    href: `mailto:${EMAIL}`,
-    external: false,
-    Icon: MailIcon,
-  },
-];
 ---
 
-<footer>
-  <div class="bg-graphite-900 py-10">
-    <div
-      class="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 text-center sm:px-6"
-    >
-      <div class="flex items-center gap-4">
-        {
-          footerIcons.map(({ label, href, external, pixel, Icon }) => (
-            <a
-              href={href}
-              {...(external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-              {...(pixel ? { "data-pixel": pixel } : {})}
-              aria-label={label}
-              class="flex h-9 w-9 items-center justify-center rounded-full border border-graphite-700 text-graphite-300 transition-colors hover:border-accent hover:text-accent"
-            >
-              <Icon />
-            </a>
-          ))
-        }
-        <span
-          class="flex h-9 w-9 items-center justify-center rounded-full border border-graphite-700 text-graphite-300"
-          aria-label={`Horário de atendimento: ${HORARIO}`}
-          title={HORARIO}
-        >
-          <ClockIcon />
-        </span>
-      </div>
+<footer class="bg-graphite-900">
+  <div
+    class="mx-auto grid max-w-6xl place-items-center gap-4 px-4 py-6 text-center sm:px-6 sm:py-10"
+  >
+    <div class="grid place-items-center gap-3">
       <p class="text-sm text-graphite-300">
         Locação de equipamentos para construção civil em Sobral-CE.
       </p>
@@ -88,21 +23,21 @@ const footerIcons = [
       </button>
     </div>
 
-    <div
-      class="mx-auto mt-4 max-w-6xl border-t border-graphite-700 px-4 pt-4 text-center sm:px-6"
+    <div class="h-px w-full bg-graphite-700"></div>
+
+    <p
+      class="flex items-center gap-1 text-xs text-graphite-300"
     >
-      <p class="text-xs text-graphite-300">
-        Feito por{" "}
-        <a
-          href="https://kauanallyson.com.br"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-graphite-300 underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent"
-        >
-          kauanallyson
-        </a>
-      </p>
-    </div>
+      Feito por
+      <a
+        href="https://kauanallyson.com.br"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-graphite-300 underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent"
+      >
+        kauanallyson
+      </a>
+    </p>
   </div>
 </footer>
 

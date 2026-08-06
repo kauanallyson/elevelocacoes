@@ -12,7 +12,12 @@ const INSTAGRAM = "https://www.instagram.com/elevelocacoes/";
 
 type ContatoItem =
   | { label: string; type: "text"; value: string; Icon: typeof MapPinIcon }
-  | { label: string; type: "phones"; value: typeof TELEFONE; Icon: typeof MapPinIcon }
+  | {
+      label: string;
+      type: "phones";
+      value: typeof TELEFONE;
+      Icon: typeof MapPinIcon;
+    }
   | {
       label: string;
       type: "link";
@@ -47,7 +52,7 @@ const contatoItems: ContatoItem[] = [
 ];
 ---
 
-<section id="contato" class="bg-graphite-900 pt-16 pb-10 sm:pt-24 sm:pb-12">
+<section id="contato" class="bg-graphite-900 py-8 sm:py-16">
   <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2">
     <div>
       <p
@@ -105,13 +110,12 @@ const contatoItems: ContatoItem[] = [
     </div>
 
     <div
-      class="min-h-80 overflow-hidden rounded-md border border-graphite-700 lg:min-h-full"
+      class="aspect-4/3 max-h-80 overflow-hidden rounded-md border border-graphite-700 lg:max-h-none"
     >
       <iframe
         title="Localização da Eleve Locações no Google Maps"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4909.590913257385!2d-40.32587682414844!3d-3.680347142931439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7eac745db806fab%3A0x4d7a2865a9fc0836!2zRWxldmUgTG9jYcOnw7VlcyBlIFNlcnZpw6dvcyB8IFNvYnJhbA!5e1!3m2!1spt-BR!2sbr!4v1785884243830!5m2!1spt-BR!2sbr"
-        width="600"
-        height="450"
+        class="block h-full w-full"
         style="border:0;"
         allowfullscreen=""
         loading="lazy"
