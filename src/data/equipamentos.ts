@@ -174,13 +174,13 @@ export const EQUIPAMENTOS: Equipamento[] = [
   // Escadas e Elevação
   {
     slug: "escada-aluminio-dobravel",
-    nome: "Escada Alumínio Dobrável 4,20 a 7,20",
+    nome: "Escada Alumínio Dobrável 4,20m a 7,20m",
     categoria: "escadas-elevacao",
     precos: { dia: 50.0, semana: 140.0, quinzena: 225.0, mes: 240.0 },
   },
   {
     slug: "escada-extensiva-fibra-de-vidro",
-    nome: "Escada Extensiva Fibra de Vidro 4,20 a 7,20",
+    nome: "Escada Extensiva Fibra de Vidro 4,20m a 7,20m",
     categoria: "escadas-elevacao",
     precos: { dia: 50.0, semana: 140.0, quinzena: 225.0, mes: 240.0 },
   },

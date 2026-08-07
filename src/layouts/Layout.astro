@@ -6,9 +6,15 @@ import Pixel from "../components/analytics/Pixel.astro";
 import PixelEvents from "../components/analytics/PixelEvents.astro";
 import CookieConsent from "../components/cookies/CookieConsent.astro";
 
-const titulo = "Eleve Locações";
-const descricao =
-  "Locação de andaimes, betoneiras, martelos demolidores, geradores e outros equipamentos para construção civil em Sobral-CE.";
+interface Props {
+  titulo?: string;
+  descricao?: string;
+}
+
+const {
+  titulo = "Eleve Locações",
+  descricao = "Locação de andaimes, betoneiras, martelos demolidores, geradores e outros equipamentos para construção civil em Sobral-CE.",
+} = Astro.props;
 ---
 
 <!doctype html>
