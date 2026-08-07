@@ -4,7 +4,7 @@ import path from "node:path";
 import { CATEGORIAS, EQUIPAMENTOS } from "../data/equipamentos";
 import CardEquipamento from "./CardEquipamento.astro";
 
-const ITENS_PREVIA = 3;
+const ITENS_PREVIA = 4;
 
 const equipamentosComFoto = EQUIPAMENTOS.map((equipamento) => ({
   ...equipamento,
@@ -28,7 +28,7 @@ const categoriaLabelPorId = new Map(
       </p>
     </div>
 
-    <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-4">
       {
         equipamentosExibidos.map((equipamento) => (
           <CardEquipamento

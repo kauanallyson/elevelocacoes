@@ -76,73 +76,32 @@ const { slug, nome, tipoPreco, precos, descricao } = equipamento;
     </div>
 
     <div class="mt-auto border-t border-graphite-100 pt-3">
-      {
-        tipoPreco === "periodo" ? (
-          <>
-            <p class="font-mono text-2xl font-semibold text-graphite-900">
-              {formatBRL(precos.dia)}
-              <span class="ml-1 text-sm font-normal text-graphite-700">
-                /dia
-              </span>
-            </p>
-            <dl class="mt-2 space-y-1 text-sm text-graphite-700">
-              <div class="flex justify-between">
-                <dt>Semana</dt>
-                <dd class="font-mono text-graphite-900">
-                  {formatBRL(precos.semana)}
-                </dd>
-              </div>
-              <div class="flex justify-between">
-                <dt>Quinzena</dt>
-                <dd class="font-mono text-graphite-900">
-                  {formatBRL(precos.quinzena)}
-                </dd>
-              </div>
-              <div class="flex justify-between">
-                <dt>Mês</dt>
-                <dd class="font-mono text-graphite-900">
-                  {formatBRL(precos.mes)}
-                </dd>
-              </div>
-            </dl>
-          </>
-        ) : (
-          <>
-            <p class="font-mono text-2xl font-semibold text-graphite-900">
-              {formatBRL(precos.dia)}
-              <span class="ml-1 text-sm font-normal text-graphite-700">
-                peça/dia
-              </span>
-            </p>
-            <dl class="mt-2 space-y-1 text-sm text-graphite-700">
-              <div class="flex justify-between">
-                <dt>Dia</dt>
-                <dd class="font-mono text-graphite-900">
-                  {formatBRL(precos.dia)}
-                </dd>
-              </div>
-              <div class="flex justify-between">
-                <dt>Semana</dt>
-                <dd class="font-mono text-graphite-900">
-                  {formatBRL(precos.semana)}
-                </dd>
-              </div>
-              <div class="flex justify-between">
-                <dt>Quinzena</dt>
-                <dd class="font-mono text-graphite-900">
-                  {formatBRL(precos.quinzena)}
-                </dd>
-              </div>
-              <div class="flex justify-between">
-                <dt>Mês</dt>
-                <dd class="font-mono text-graphite-900">
-                  {formatBRL(precos.mes)}
-                </dd>
-              </div>
-            </dl>
-          </>
-        )
-      }
+      <>
+        <p class="font-mono text-2xl font-semibold text-graphite-900">
+          {formatBRL(precos.dia)}
+          <span class="ml-1 text-sm font-normal text-graphite-700"> /dia </span>
+        </p>
+        <dl class="mt-2 space-y-1 text-sm text-graphite-700">
+          <div class="flex justify-between">
+            <dt>Semana</dt>
+            <dd class="font-mono text-graphite-900">
+              {formatBRL(precos.semana)}
+            </dd>
+          </div>
+          <div class="flex justify-between">
+            <dt>Quinzena</dt>
+            <dd class="font-mono text-graphite-900">
+              {formatBRL(precos.quinzena)}
+            </dd>
+          </div>
+          <div class="flex justify-between">
+            <dt>Mês</dt>
+            <dd class="font-mono text-graphite-900">
+              {formatBRL(precos.mes)}
+            </dd>
+          </div>
+        </dl>
+      </>
     </div>
 
     <a
