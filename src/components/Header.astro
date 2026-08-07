@@ -1,7 +1,6 @@
 ---
 import { linkWhatsApp, MENSAGEM_GERAL } from "../lib/whatsapp";
 import { Image } from "astro:assets";
-import logoQuadrada from "../assets/logo1x1.png";
 import logoHorizontal from "../assets/logo3x1-no-bg-gray.png";
 import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
 
@@ -22,13 +21,7 @@ const links = [
       <Image
         src={logoHorizontal}
         alt="Eleve Locações de Equipamentos"
-        class="h-12 w-auto sm:hidden"
-        loading="eager"
-      />
-      <Image
-        src={logoQuadrada}
-        alt="Eleve Locações de Equipamentos"
-        class="hidden h-12 w-12 sm:block"
+        class="h-12 w-auto"
         loading="eager"
       />
     </a>
@@ -57,8 +50,7 @@ const links = [
       class="inline-flex shrink-0 items-center gap-2 rounded-sm bg-accent px-4 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
     >
       <WhatsAppIcon />
-      <span class="hidden sm:inline">Fale conosco</span>
-      <span class="sm:hidden">WhatsApp</span>
+      <span>Fale conosco</span>
     </a>
   </div>
 </header>

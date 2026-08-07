@@ -19,13 +19,13 @@ const descricao =
 
     <SEO titulo={titulo} descricao={descricao} />
 
-    <Font cssVariable="--font-big-shoulders" preload />
-    <Font cssVariable="--font-plex-sans" preload />
+    <Font cssVariable="--font-big-shoulders" />
+    <Font cssVariable="--font-plex-sans" />
     <Font cssVariable="--font-plex-mono" />
 
     <Pixel />
   </head>
-  <body class="font-sans">
+  <body class="font-sans scroll-smooth">
     <slot />
     <PixelEvents />
     <CookieConsent />
