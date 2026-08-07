@@ -115,7 +115,7 @@ export const EQUIPAMENTOS: Equipamento[] = [
     precos: { dia: 200.0, semana: 910.0, quinzena: 1650.0, mes: 3000.0 },
   },
   {
-    slug: "cortadora-de-blocos",
+    slug: "guilhotina",
     nome: "Cortadora de Blocos",
     categoria: "demolicao-compactacao",
     tipoPreco: "periodo",
