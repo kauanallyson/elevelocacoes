@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import logoHorizontal from "../assets/logo3x1-no-bg.png";
-import { linkWhatsApp, MENSAGEM_GERAL } from "../lib/whatsapp";
+import logoHorizontal from "../../assets/logo3x1-no-bg.png";
+import { linkWhatsApp, MENSAGEM_GERAL } from "../../lib/whatsapp";
+import Button from "../ui/Button.astro";
 
 const credibilidade = [
   "+40 equipamentos",
@@ -32,21 +33,17 @@ const credibilidade = [
       </p>
 
       <div class="mt-8 flex flex-wrap items-center gap-4">
-        <a
-          href="/catalogo"
-          class="inline-flex items-center rounded-sm bg-accent px-6 py-3 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
-        >
-          Ver catálogo
-        </a>
-        <a
+        <Button href="/catalogo" size="lg">Ver catálogo</Button>
+        <Button
           href={linkWhatsApp(MENSAGEM_GERAL)}
           target="_blank"
           rel="noopener noreferrer"
           data-pixel="whatsapp"
-          class="inline-flex items-center rounded-sm border border-graphite-700 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-accent hover:text-accent"
+          variant="secondary-dark"
+          size="lg"
         >
           Entre em contato
-        </a>
+        </Button>
       </div>
     </div>
 

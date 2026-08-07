@@ -1,8 +1,9 @@
 ---
-import { linkWhatsApp, MENSAGEM_GERAL } from "../lib/whatsapp";
+import { linkWhatsApp, MENSAGEM_GERAL } from "../../lib/whatsapp";
 import { Image } from "astro:assets";
-import logoHorizontal from "../assets/logo3x1-no-bg-gray.png";
-import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
+import logoHorizontal from "../../assets/logo3x1-no-bg-gray.png";
+import WhatsAppIcon from "../icons/WhatsAppIcon.astro";
+import Button from "../ui/Button.astro";
 
 const links = [
   { href: "/", label: "Início" },
@@ -42,15 +43,16 @@ const links = [
       }
     </nav>
 
-    <a
+    <Button
       href={linkWhatsApp(MENSAGEM_GERAL)}
       target="_blank"
       rel="noopener noreferrer"
       data-pixel="whatsapp"
-      class="inline-flex shrink-0 items-center gap-2 rounded-sm bg-accent px-4 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
+      size="sm"
+      class="shrink-0 gap-2"
     >
       <WhatsAppIcon />
       <span>Fale conosco</span>
-    </a>
+    </Button>
   </div>
 </header>

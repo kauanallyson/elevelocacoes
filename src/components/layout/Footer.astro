@@ -1,4 +1,6 @@
 ---
+import Link from "../ui/Link.astro";
+
 const anoAtual = new Date().getFullYear();
 ---
 
@@ -14,33 +16,29 @@ const anoAtual = new Date().getFullYear();
         Preços podem sofrer reajuste e devem ser confirmados no atendimento.
       </p>
       <p class="mt-1 text-sm text-graphite-300">© {anoAtual} Eleve Locações</p>
-      <button
-        id="cookie-preferences"
-        type="button"
-        class="text-xs text-graphite-300/70 underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent"
-      >
+      <Link id="cookie-preferences" variant="subtle">
         Preferências de cookies
-      </button>
+      </Link>
     </div>
 
     <div class="h-px w-full bg-graphite-700"></div>
 
     <p class="flex items-center gap-1 text-xs text-graphite-300">
       Feito por
-      <a
+      <Link
         href="https://kauanallyson.com.br"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-graphite-300 underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent"
+        variant="default"
       >
         kauanallyson
-      </a>
+      </Link>
     </p>
   </div>
 </footer>
 
 <script>
-  import { clearConsent } from "../lib/consent";
+  import { clearConsent } from "../../lib/consent";
 
   document
     .getElementById("cookie-preferences")

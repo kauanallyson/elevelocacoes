@@ -1,9 +1,11 @@
 ---
 import fs from "node:fs";
 import path from "node:path";
-import { CATEGORIAS, EQUIPAMENTOS } from "../data/equipamentos";
-import { linkWhatsApp, MENSAGEM_GERAL } from "../lib/whatsapp";
-import CardEquipamento from "./CardEquipamento.astro";
+import { CATEGORIAS, EQUIPAMENTOS } from "../../data/equipamentos";
+import { linkWhatsApp, MENSAGEM_GERAL } from "../../lib/whatsapp";
+import EquipamentoList from "./EquipamentoList.astro";
+import Button from "../ui/Button.astro";
+import Chip from "../ui/Chip.astro";
 
 const equipamentosExibidos = EQUIPAMENTOS.map((equipamento) => ({
   ...equipamento,
@@ -11,10 +13,6 @@ const equipamentosExibidos = EQUIPAMENTOS.map((equipamento) => ({
     path.resolve("src/assets/produtos", `${equipamento.slug}.webp`),
   ),
 }));
-
-const categoriaLabelPorId = new Map(
-  CATEGORIAS.map((c) => [c.id, c.label] as const),
-);
 ---
 
 <section id="catalogo" class="bg-white py-4 sm:py-8">
@@ -47,48 +45,22 @@ const categoriaLabelPorId = new Map(
           role="group"
           aria-label="Filtrar por categoria"
         >
-          <button
-            type="button"
-            class="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
-            data-categoria="todos"
-            data-active="true"
-            aria-pressed="true"
-          >
+          <Chip categoria="todos" active>
             Todos
-          </button>
+          </Chip>
           {
             CATEGORIAS.map((categoria) => (
-              <button
-                type="button"
-                class="chip-categoria rounded-sm border border-graphite-300 px-3.5 py-1.5 text-sm font-medium text-graphite-900 transition-colors data-[active=true]:border-accent data-[active=true]:bg-accent-tint data-[active=true]:text-accent-dark cursor-pointer"
-                data-categoria={categoria.id}
-                data-active="false"
-                aria-pressed="false"
-              >
-                {categoria.label}
-              </button>
+              <Chip categoria={categoria.id}>{categoria.label}</Chip>
             ))
           }
         </div>
       </div>
 
-      <div
+      <EquipamentoList
         id="catalogo-grid"
         class="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-4"
-      >
-        {
-          equipamentosExibidos.map((equipamento) => (
-            <CardEquipamento
-              equipamento={equipamento}
-              categoriaLabel={
-                categoriaLabelPorId.get(equipamento.categoria) ??
-                equipamento.categoria
-              }
-              temFoto={equipamento.temFoto}
-            />
-          ))
-        }
-      </div>
+        equipamentos={equipamentosExibidos}
+      />
 
       <div id="catalogo-vazio" class="hidden py-16 text-center">
         <p class="font-display text-xl text-graphite-900">
@@ -98,15 +70,15 @@ const categoriaLabelPorId = new Map(
           Não achou o que precisa no catálogo? Chame no WhatsApp a gente pode
           ter o equipamento fora da lista.
         </p>
-        <a
+        <Button
           href={linkWhatsApp(MENSAGEM_GERAL)}
           target="_blank"
           rel="noopener noreferrer"
           data-pixel="whatsapp"
-          class="mt-5 inline-flex items-center justify-center rounded-sm bg-accent px-5 py-2.5 text-sm font-semibold text-graphite-900 transition-colors hover:bg-accent-dark"
+          class="mt-5"
         >
           Falar no WhatsApp
-        </a>
+        </Button>
       </div>
     </div>
   </div>

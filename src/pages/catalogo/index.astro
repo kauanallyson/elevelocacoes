@@ -1,9 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
-import Catalogo from "../../components/Catalogo.astro";
-import Footer from "../../components/Footer.astro";
-import BotaoWhatsApp from "../../components/BotaoWhatsApp.astro";
+import Header from "../../components/layout/Header.astro";
+import Catalogo from "../../components/catalogo/Catalogo.astro";
+import Footer from "../../components/layout/Footer.astro";
+import WhatsAppButton from "../../components/layout/WhatsAppButton.astro";
 ---
 
 <Layout>
@@ -12,5 +12,5 @@ import BotaoWhatsApp from "../../components/BotaoWhatsApp.astro";
     <Catalogo />
   </main>
   <Footer />
-  <BotaoWhatsApp />
+  <WhatsAppButton />
 </Layout>
