@@ -11,6 +11,8 @@
     produto: (alvo) => {
       fbq("track", "ViewContent", {
         content_name: alvo.dataset.produtoNome,
+        content_category: alvo.dataset.categoria,
+        content_type: "product",
       });
     },
     localizacao: () => {
