@@ -19,11 +19,11 @@ const imagensPorSlug = Object.fromEntries(
 type Props = {
   equipamento: Equipamento;
   categoriaLabel: string;
-  temFoto: boolean;
 };
 
-const { equipamento, categoriaLabel, temFoto } = Astro.props;
+const { equipamento, categoriaLabel } = Astro.props;
 const { slug, nome } = equipamento;
+const temFoto = slug in imagensPorSlug;
 ---
 
 <article

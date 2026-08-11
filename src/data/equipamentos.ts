@@ -6,7 +6,7 @@ export type CategoriaId =
 	| "ferramentas-eletricas"
 	| "escadas-elevacao"
 	| "energia"
-	| "concreto-argamassa"
+	| "concreto"
 	| "agua-limpeza";
 
 export type Categoria = {
@@ -20,7 +20,7 @@ export const CATEGORIAS: Categoria[] = [
 	{ id: "ferramentas-eletricas", label: "Ferramentas Elétricas" },
 	{ id: "escadas-elevacao", label: "Escadas e Elevação" },
 	{ id: "energia", label: "Energia" },
-	{ id: "concreto-argamassa", label: "Concreto e Argamassa" },
+	{ id: "concreto", label: "Concreto" },
 	{ id: "agua-limpeza", label: "Água e Limpeza" },
 ];
 
@@ -48,13 +48,8 @@ export const EQUIPAMENTOS: Equipamento[] = [
 		categoria: "andaimes-escoramento",
 	},
 	{
-		slug: "escora-3,2m",
-		nome: "Escora Metálica 3,2m",
-		categoria: "andaimes-escoramento",
-	},
-	{
-		slug: "escora-4,5m",
-		nome: "Escora Metálica 4,5m",
+		slug: "escora",
+		nome: "Escora Metálica 3,2m ou 4,5m",
 		categoria: "andaimes-escoramento",
 	},
 	{
@@ -81,6 +76,33 @@ export const EQUIPAMENTOS: Equipamento[] = [
 		slug: "sapata-simples",
 		nome: "Sapata Simples",
 		categoria: "andaimes-escoramento",
+	},
+
+	// Concreto e Argamassa
+	{
+		slug: "molde-corpo-de-prova",
+		nome: "Molde para corpos de prova",
+		categoria: "concreto",
+	},
+	{
+		slug: "betoneira",
+		nome: "Betoneira Monofásica 400L",
+		categoria: "concreto",
+	},
+	{
+		slug: "peneira-eletrica",
+		nome: "Peneira Elétrica",
+		categoria: "concreto",
+	},
+	{
+		slug: "vibrador-bosch",
+		nome: "Vibrador Bosch Mangote de 3,5m",
+		categoria: "concreto",
+	},
+	{
+		slug: "vibrador-portatil",
+		nome: "Vibrador Portátil 25mm Mangote de 1,50m",
+		categoria: "concreto",
 	},
 
 	// Demolição e Compactação
@@ -181,46 +203,9 @@ export const EQUIPAMENTOS: Equipamento[] = [
 		categoria: "energia",
 	},
 	{
-		slug: "extensao-10m",
-		nome: "Extensão 10 metros",
+		slug: "extensao",
+		nome: "Extensão 10-50 metros",
 		categoria: "energia",
-	},
-	{
-		slug: "extensao-20m",
-		nome: "Extensão 20 metros",
-		categoria: "energia",
-	},
-	{
-		slug: "extensao-30m",
-		nome: "Extensão 30 metros",
-		categoria: "energia",
-	},
-	{
-		slug: "extensao-50m",
-		nome: "Extensão 50 metros",
-		categoria: "energia",
-	},
-
-	// Concreto e Argamassa
-	{
-		slug: "betoneira-400l",
-		nome: "Betoneira Monofásica 400L",
-		categoria: "concreto-argamassa",
-	},
-	{
-		slug: "peneira-eletrica",
-		nome: "Peneira Elétrica",
-		categoria: "concreto-argamassa",
-	},
-	{
-		slug: "vibrador-bosch",
-		nome: "Vibrador Bosch Mangote de 3,5m",
-		categoria: "concreto-argamassa",
-	},
-	{
-		slug: "vibrador-portatil",
-		nome: "Vibrador Portátil 25mm Mangote de 1,50m",
-		categoria: "concreto-argamassa",
 	},
 
 	// Água e Limpeza

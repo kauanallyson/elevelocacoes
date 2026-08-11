@@ -1,6 +1,4 @@
 ---
-import fs from "node:fs";
-import path from "node:path";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/sections/Header.astro";
 import Hero from "../components/sections/Hero.astro";
@@ -11,15 +9,10 @@ import WhatsAppButton from "../components/sections/WhatsAppButton.astro";
 import Button from "../components/ui/Button.astro";
 import { EQUIPAMENTOS } from "../data/equipamentos";
 
-const ITENS_PREVIA = 4;
+const PREVIA = ["escora", "painel-metalico", "barra-de-ancoragem", "betoneira"];
 
-const equipamentosExibidos = EQUIPAMENTOS.slice(0, ITENS_PREVIA).map(
-  (equipamento) => ({
-    ...equipamento,
-    temFoto: fs.existsSync(
-      path.resolve("src/assets/produtos", `${equipamento.slug}.webp`),
-    ),
-  }),
+const previaEquipamentos = PREVIA.map(
+  (slug) => EQUIPAMENTOS.find((equipamento) => equipamento.slug === slug)!,
 );
 ---
 
@@ -37,7 +30,7 @@ const equipamentosExibidos = EQUIPAMENTOS.slice(0, ITENS_PREVIA).map(
 
         <EquipamentoList
           class="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-4"
-          equipamentos={equipamentosExibidos}
+          equipamentos={previaEquipamentos}
         />
 
         <div class="mt-8 flex justify-center">

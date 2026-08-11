@@ -1,18 +1,9 @@
 ---
-import fs from "node:fs";
-import path from "node:path";
 import { CATEGORIAS, EQUIPAMENTOS } from "../../data/equipamentos";
 import { linkWhatsApp, MENSAGEM_GERAL } from "../../lib/whatsapp";
 import Button from "../ui/Button.astro";
 import Chip from "../ui/Chip.astro";
 import EquipamentoList from "./EquipamentoList.astro";
-
-const equipamentosExibidos = EQUIPAMENTOS.map((equipamento) => ({
-  ...equipamento,
-  temFoto: fs.existsSync(
-    path.resolve("src/assets/produtos", `${equipamento.slug}.webp`),
-  ),
-}));
 ---
 
 <section id="catalogo" class="bg-white py-4 sm:py-8">
@@ -57,7 +48,7 @@ const equipamentosExibidos = EQUIPAMENTOS.map((equipamento) => ({
       <EquipamentoList
         id="catalogo-grid"
         class="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-4"
-        equipamentos={equipamentosExibidos}
+        equipamentos={EQUIPAMENTOS}
       />
 
       <div id="catalogo-vazio" class="hidden py-16 text-center">

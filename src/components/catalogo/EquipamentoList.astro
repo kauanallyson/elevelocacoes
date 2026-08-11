@@ -3,10 +3,8 @@ import type { Equipamento } from "../../data/equipamentos";
 import { CATEGORIAS } from "../../data/equipamentos";
 import CardEquipamento from "./CardEquipamento.astro";
 
-type EquipamentoComFoto = Equipamento & { temFoto: boolean };
-
 type Props = {
-  equipamentos: EquipamentoComFoto[];
+  equipamentos: Equipamento[];
   id?: string;
   class?: string;
 };
@@ -27,7 +25,6 @@ const categoriaLabelPorId = new Map(
           categoriaLabelPorId.get(equipamento.categoria) ??
           equipamento.categoria
         }
-        temFoto={equipamento.temFoto}
       />
     ))
   }
