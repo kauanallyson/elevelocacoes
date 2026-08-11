@@ -3,9 +3,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { CATEGORIAS, EQUIPAMENTOS } from "../../data/equipamentos";
 import { linkWhatsApp, MENSAGEM_GERAL } from "../../lib/whatsapp";
-import EquipamentoList from "./EquipamentoList.astro";
 import Button from "../ui/Button.astro";
 import Chip from "../ui/Chip.astro";
+import EquipamentoList from "./EquipamentoList.astro";
 
 const equipamentosExibidos = EQUIPAMENTOS.map((equipamento) => ({
   ...equipamento,
@@ -45,9 +45,7 @@ const equipamentosExibidos = EQUIPAMENTOS.map((equipamento) => ({
           role="group"
           aria-label="Filtrar por categoria"
         >
-          <Chip categoria="todos" active>
-            Todos
-          </Chip>
+          <Chip categoria="todos" active> Todos </Chip>
           {
             CATEGORIAS.map((categoria) => (
               <Chip categoria={categoria.id}>{categoria.label}</Chip>

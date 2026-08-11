@@ -1,8 +1,7 @@
 ---
-import { formatBRL } from "../../lib/formato";
-import { linkWhatsApp, mensagemProduto } from "../../lib/whatsapp";
-import type { Equipamento } from "../../data/equipamentos";
 import { Image } from "astro:assets";
+import type { Equipamento } from "../../data/equipamentos";
+import { linkWhatsApp, mensagemProduto } from "../../lib/whatsapp";
 import WrenchIcon from "../icons/WrenchIcon.astro";
 import Button from "../ui/Button.astro";
 
@@ -24,11 +23,11 @@ type Props = {
 };
 
 const { equipamento, categoriaLabel, temFoto } = Astro.props;
-const { slug, nome, precos, descricao } = equipamento;
+const { slug, nome } = equipamento;
 ---
 
 <article
-  class="flex flex-col overflow-hidden rounded-md border border-graphite-100 bg-white transition-shadow hover:shadow-lg hover:shadow-graphite-900/5"
+  class="flex flex-col rounded-md border border-graphite-100 bg-white transition-shadow hover:shadow-lg hover:shadow-graphite-900/5"
   data-card
   data-nome={nome}
   data-categoria={equipamento.categoria}
@@ -53,46 +52,16 @@ const { slug, nome, precos, descricao } = equipamento;
     }
   </div>
 
-  <div class="flex flex-1 flex-col gap-3 p-4">
+  <div class="flex flex-1 flex-col justify-between gap-3 p-4">
     <div>
       <p
-        class="font-mono text-[11px] uppercase tracking-wide text-graphite-700"
+        class="font-mono text-[11px] uppercase tracking-wide text-graphite-700 hidden sm:block"
       >
         {categoriaLabel}
       </p>
       <h3 class="mt-1 font-display text-lg leading-tight text-graphite-900">
         {nome}
       </h3>
-      {descricao && <p class="mt-1 text-sm text-graphite-700">{descricao}</p>}
-    </div>
-
-    <div class="mt-auto border-t border-graphite-100 pt-3">
-      <>
-        <p class="font-mono text-2xl font-semibold text-graphite-900">
-          {formatBRL(precos.dia)}
-          <span class="ml-1 text-sm font-normal text-graphite-700"> /dia </span>
-        </p>
-        <dl class="mt-2 space-y-1 text-sm text-graphite-700">
-          <div class="flex justify-between">
-            <dt>Semana</dt>
-            <dd class="font-mono text-graphite-900">
-              {formatBRL(precos.semana)}
-            </dd>
-          </div>
-          <div class="flex justify-between">
-            <dt>Quinzena</dt>
-            <dd class="font-mono text-graphite-900">
-              {formatBRL(precos.quinzena)}
-            </dd>
-          </div>
-          <div class="flex justify-between">
-            <dt>Mês</dt>
-            <dd class="font-mono text-graphite-900">
-              {formatBRL(precos.mes)}
-            </dd>
-          </div>
-        </dl>
-      </>
     </div>
 
     <Button
