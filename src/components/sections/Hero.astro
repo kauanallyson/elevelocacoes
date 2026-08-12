@@ -16,17 +16,19 @@ import Button from "../ui/Button.astro";
         Sobral, Tianguá, Preá, Camocim e região
       </p>
       <h1
-        class="mt-5 font-display text-[2rem] leading-none text-white sm:text-6xl"
+        class="mt-5 font-display text-5xl leading-none text-white sm:text-6xl"
       >
-        Aluguel de Escoras, Andaimes, Betoneiras{" "}
-        <span class="text-accent">e Muito Mais.</span>
+        Aluguel de Escoras, Andaimes, Betoneiras
+        <span class="block text-accent">e Muito Mais.</span>
       </h1>
       <p class="mt-6 max-w-xl text-base leading-relaxed sm:text-[18px]">
         Maior frota de escoras e andaimes da região, equipamentos certificados e
         atendimento com agilidade.
       </p>
 
-      <div class="mt-8 flex flex-wrap items-center gap-4">
+      <div
+        class="mt-8 flex flex-wrap items-center justify-center gap-4 sm:justify-start"
+      >
         <Button href="/catalogo" size="lg">Ver catálogo</Button>
         <Button
           href={linkWhatsApp(MENSAGEM_GERAL)}
