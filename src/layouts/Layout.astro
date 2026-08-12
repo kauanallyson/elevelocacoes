@@ -5,6 +5,7 @@ import SEO from "../components/seo/SEO.astro";
 import Pixel from "../components/analytics/Pixel.astro";
 import PixelEvents from "../components/analytics/PixelEvents.astro";
 import CookieConsent from "../components/cookies/CookieConsent.astro";
+import GoogleTag from "../components/analytics/GoogleTag.astro";
 
 interface Props {
   titulo?: string;
@@ -30,6 +31,7 @@ const {
     <Font cssVariable="--font-plex-mono" />
 
     <Pixel />
+    <GoogleTag />
   </head>
   <body class="font-sans scroll-smooth">
     <slot />
