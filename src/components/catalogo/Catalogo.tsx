@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Chip from "@/components/ui/Chip";
 import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 import { CATEGORIAS, type CategoriaId } from "@/data/equipamentos";
 import type { EquipamentoComFoto } from "@/lib/produtos";
@@ -41,42 +40,42 @@ export default function Catalogo({ equipamentos }: Props) {
 					</h1>
 				</div>
 
-				<div className="top-16 z-30 -mx-4 flex flex-col gap-4 border-b border-graphite-100 bg-white/95 px-4 py-4 backdrop-blur sm:-mx-6 sm:px-6">
-					<div className="relative max-w-md">
+				<div className="top-16 z-30 -mx-4 flex flex-col gap-4 border-b border-graphite-100 bg-white/95 px-4 py-4 backdrop-blur sm:-mx-6 sm:flex-row sm:px-6">
+					<div className="relative sm:flex-1">
 						<label htmlFor="busca-equipamento" className="sr-only">
 							Buscar equipamento pelo nome
 						</label>
 						<input
 							id="busca-equipamento"
 							type="search"
-							placeholder="Buscar equipamento (ex: betoneira, escora, martelo...)"
-							className="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 text-sm text-graphite-900 placeholder:text-graphite-700/60 focus-visible:border-accent-dark"
+							placeholder="Escora, Andaime, Betoneira..."
+							className="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 font-sans text-sm text-graphite-900 placeholder:text-graphite-700/60 focus-visible:border-accent-dark"
 							autoComplete="off"
 							value={busca}
 							onChange={(event) => setBusca(event.target.value)}
 						/>
 					</div>
 
-					<fieldset className="m-0 flex flex-wrap gap-2 border-0 p-0">
-						<legend className="sr-only">Filtrar por categoria</legend>
-						<Chip
-							categoria="todos"
-							active={categoriaAtiva === "todos"}
-							onClick={() => setCategoriaAtiva("todos")}
+					<div className="sm:w-56">
+						<label htmlFor="categoria-equipamento" className="sr-only">
+							Filtrar por categoria
+						</label>
+						<select
+							id="categoria-equipamento"
+							className="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 font-sans text-sm text-graphite-900 focus-visible:border-accent-dark"
+							value={categoriaAtiva}
+							onChange={(event) =>
+								setCategoriaAtiva(event.target.value as CategoriaId | "todos")
+							}
 						>
-							Todos
-						</Chip>
-						{CATEGORIAS.map((categoria) => (
-							<Chip
-								key={categoria.id}
-								categoria={categoria.id}
-								active={categoriaAtiva === categoria.id}
-								onClick={() => setCategoriaAtiva(categoria.id)}
-							>
-								{categoria.label}
-							</Chip>
-						))}
-					</fieldset>
+							<option value="todos">Todas as categorias</option>
+							{CATEGORIAS.map((categoria) => (
+								<option key={categoria.id} value={categoria.id}>
+									{categoria.label}
+								</option>
+							))}
+						</select>
+					</div>
 				</div>
 
 				{filtrados.length > 0 ? (

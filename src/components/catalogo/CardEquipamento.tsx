@@ -1,8 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import WrenchIcon from "@/components/icons/WrenchIcon";
-import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 import type { EquipamentoComFoto } from "@/lib/produtos";
-import { mensagemProduto } from "@/lib/whatsapp";
 
 type Props = {
 	equipamento: EquipamentoComFoto;
@@ -16,8 +15,9 @@ export default function CardEquipamento({
 	const { slug, nome, temFoto } = equipamento;
 
 	return (
-		<article
-			className="flex flex-col rounded-md border border-graphite-100 bg-white transition-shadow hover:shadow-lg hover:shadow-graphite-900/5"
+		<Link
+			href={`/catalogo/${slug}`}
+			className="flex flex-col rounded-md border border-graphite-100 bg-white"
 			data-card
 			data-nome={nome}
 			data-categoria={equipamento.categoria}
@@ -43,24 +43,14 @@ export default function CardEquipamento({
 				)}
 			</div>
 
-			<div className="flex flex-1 flex-col justify-between gap-3 p-4">
-				<div>
-					<p className="font-mono text-[11px] uppercase tracking-wide text-graphite-700 hidden sm:block">
-						{categoriaLabel}
-					</p>
-					<h3 className="mt-1 font-display text-lg leading-tight text-graphite-900">
-						{nome}
-					</h3>
-				</div>
-
-				<WhatsAppLink
-					mensagem={mensagemProduto(nome)}
-					size="sm"
-					className="mt-1 text-center"
-				>
-					Solicite um orçamento
-				</WhatsAppLink>
+			<div className="p-4">
+				<p className="font-mono text-[11px] uppercase tracking-wide text-graphite-700 hidden sm:block">
+					{categoriaLabel}
+				</p>
+				<h3 className="mt-1 font-display text-lg leading-tight text-graphite-900">
+					{nome}
+				</h3>
 			</div>
-		</article>
+		</Link>
 	);
 }

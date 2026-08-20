@@ -46,6 +46,7 @@ export default function RootLayout({
 	return (
 		<html
 			lang="pt-BR"
+			data-scroll-behavior="smooth"
 			className={`${bigShoulders.variable} ${plexSans.variable} ${plexMono.variable}`}
 		>
 			<head>
