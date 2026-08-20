@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 import { CATEGORIAS, type CategoriaId } from "@/data/equipamentos";
@@ -14,11 +15,37 @@ function normalizar(texto: string) {
 	return texto.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 }
 
+const CATEGORIA_IDS = CATEGORIAS.map((categoria) => categoria.id);
+
+function isCategoriaId(value: string | null): value is CategoriaId {
+	return value !== null && (CATEGORIA_IDS as string[]).includes(value);
+}
+
 export default function Catalogo({ equipamentos }: Props) {
+	const router = useRouter();
+	const searchParams = useSearchParams();
+	const categoriaParam = searchParams.get("categoria");
+
 	const [busca, setBusca] = useState("");
 	const [categoriaAtiva, setCategoriaAtiva] = useState<CategoriaId | "todos">(
-		"todos",
+		isCategoriaId(categoriaParam) ? categoriaParam : "todos",
 	);
+
+	function selecionarCategoria(categoria: CategoriaId | "todos") {
+		setCategoriaAtiva(categoria);
+
+		const params = new URLSearchParams(searchParams.toString());
+		if (categoria === "todos") {
+			params.delete("categoria");
+		} else {
+			params.set("categoria", categoria);
+		}
+
+		const query = params.toString();
+		router.replace(query ? `/catalogo?${query}` : "/catalogo", {
+			scroll: false,
+		});
+	}
 
 	const filtrados = useMemo(() => {
 		const termo = normalizar(busca.trim());
@@ -65,7 +92,9 @@ export default function Catalogo({ equipamentos }: Props) {
 							className="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 font-sans text-sm text-graphite-900 focus-visible:border-accent-dark"
 							value={categoriaAtiva}
 							onChange={(event) =>
-								setCategoriaAtiva(event.target.value as CategoriaId | "todos")
+								selecionarCategoria(
+									event.target.value as CategoriaId | "todos",
+								)
 							}
 						>
 							<option value="todos">Todas as categorias</option>

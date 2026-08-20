@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Catalogo from "@/components/catalogo/Catalogo";
 import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
@@ -21,7 +22,9 @@ export default function CatalogoPage() {
 		<>
 			<Header />
 			<main>
-				<Catalogo equipamentos={equipamentos} />
+				<Suspense fallback={null}>
+					<Catalogo equipamentos={equipamentos} />
+				</Suspense>
 			</main>
 			<Footer />
 			<WhatsAppButton />
