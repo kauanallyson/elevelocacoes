@@ -1,4 +1,5 @@
 import Script from "next/script";
+import { CONSENT_CHANGED_EVENT, CONSENT_KEY } from "@/lib/consent";
 
 export default function Pixel() {
 	return (
@@ -34,15 +35,16 @@ export default function Pixel() {
   fbq("track", "PageView");
 }
 
-if (localStorage.getItem("cookie-consent") === "granted") {
+if (localStorage.getItem("${CONSENT_KEY}") === "granted") {
   iniciarMetaPixel();
 }
 
-window.addEventListener("consent-changed", () => {
-  if (localStorage.getItem("cookie-consent") === "granted") {
+window.addEventListener("${CONSENT_CHANGED_EVENT}", () => {
+  if (localStorage.getItem("${CONSENT_KEY}") === "granted") {
     iniciarMetaPixel();
   }
-});`}
+});
+`}
 		</Script>
 	);
 }

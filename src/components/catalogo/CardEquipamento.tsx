@@ -1,8 +1,8 @@
 import Image from "next/image";
 import WrenchIcon from "@/components/icons/WrenchIcon";
-import Button from "@/components/ui/Button";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 import type { EquipamentoComFoto } from "@/lib/produtos";
-import { linkWhatsApp, mensagemProduto } from "@/lib/whatsapp";
+import { mensagemProduto } from "@/lib/whatsapp";
 
 type Props = {
 	equipamento: EquipamentoComFoto;
@@ -53,16 +53,13 @@ export default function CardEquipamento({
 					</h3>
 				</div>
 
-				<Button
-					href={linkWhatsApp(mensagemProduto(nome))}
-					target="_blank"
-					rel="noopener noreferrer"
-					data-pixel="whatsapp"
+				<WhatsAppLink
+					mensagem={mensagemProduto(nome)}
 					size="sm"
 					className="mt-1 text-center"
 				>
 					Solicite um orçamento
-				</Button>
+				</WhatsAppLink>
 			</div>
 		</article>
 	);

@@ -5,11 +5,19 @@ import type {
 } from "react";
 
 const VARIANTS = {
-	primary: "bg-accent text-graphite-900 hover:bg-accent-dark",
+	primary:
+		"inline-flex items-center justify-center rounded-sm text-sm font-semibold transition-colors bg-accent text-graphite-900 hover:bg-accent-dark",
 	secondary:
-		"border border-graphite-300 text-graphite-900 hover:border-accent hover:text-accent-dark",
+		"inline-flex items-center justify-center rounded-sm text-sm font-semibold transition-colors border border-graphite-300 text-graphite-900 hover:border-accent hover:text-accent-dark",
 	"secondary-dark":
-		"border border-graphite-700 text-white transition-colors hover:border-accent hover:text-accent",
+		"inline-flex items-center justify-center rounded-sm text-sm font-semibold transition-colors border border-graphite-700 text-white hover:border-accent hover:text-accent",
+	"link-light":
+		"underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent text-graphite-100",
+	"link-default":
+		"underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent text-graphite-300",
+	"link-subtle":
+		"underline decoration-graphite-700 underline-offset-4 transition-colors hover:text-accent text-xs text-graphite-300/70",
+	unstyled: "",
 };
 
 const SIZES = {
@@ -18,6 +26,14 @@ const SIZES = {
 	lg: "px-6 py-3",
 };
 
+// Text-link and unstyled variants own their full look; they don't take padding scale.
+const SIZELESS_VARIANTS = new Set<keyof typeof VARIANTS>([
+	"link-light",
+	"link-default",
+	"link-subtle",
+	"unstyled",
+]);
+
 type CommonProps = {
 	variant?: keyof typeof VARIANTS;
 	size?: keyof typeof SIZES;
@@ -25,7 +41,7 @@ type CommonProps = {
 	children?: ReactNode;
 };
 
-type Props =
+export type ButtonProps =
 	| (CommonProps & { href: string } & AnchorHTMLAttributes<HTMLAnchorElement>)
 	| (CommonProps & {
 			href?: undefined;
@@ -38,11 +54,10 @@ export default function Button({
 	className,
 	children,
 	...rest
-}: Props) {
+}: ButtonProps) {
 	const classes = [
-		"inline-flex items-center justify-center rounded-sm text-sm font-semibold transition-colors",
 		VARIANTS[variant],
-		SIZES[size],
+		SIZELESS_VARIANTS.has(variant) ? null : SIZES[size],
 		className,
 	]
 		.filter(Boolean)

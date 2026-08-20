@@ -1,8 +1,7 @@
 import Image from "next/image";
 import logoHorizontal from "@/assets/logo3x1-no-bg-gray.png";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
-import Button from "@/components/ui/Button";
-import { linkWhatsApp, MENSAGEM_GERAL } from "@/lib/whatsapp";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 
 const links = [
 	{ href: "/", label: "Início" },
@@ -38,17 +37,10 @@ export default function Header() {
 					))}
 				</nav>
 
-				<Button
-					href={linkWhatsApp(MENSAGEM_GERAL)}
-					target="_blank"
-					rel="noopener noreferrer"
-					data-pixel="whatsapp"
-					size="sm"
-					className="shrink-0 gap-2"
-				>
+				<WhatsAppLink size="sm" className="shrink-0 gap-2">
 					<WhatsAppIcon />
 					<span>Fale conosco</span>
-				</Button>
+				</WhatsAppLink>
 			</div>
 		</header>
 	);

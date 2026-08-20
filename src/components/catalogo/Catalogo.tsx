@@ -1,11 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Button from "@/components/ui/Button";
 import Chip from "@/components/ui/Chip";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 import { CATEGORIAS, type CategoriaId } from "@/data/equipamentos";
 import type { EquipamentoComFoto } from "@/lib/produtos";
-import { linkWhatsApp, MENSAGEM_GERAL } from "@/lib/whatsapp";
 import EquipamentoList from "./EquipamentoList";
 
 type Props = {
@@ -95,15 +94,7 @@ export default function Catalogo({ equipamentos }: Props) {
 							Não achou o que precisa no catálogo? Chame no WhatsApp a gente
 							pode ter o equipamento fora da lista.
 						</p>
-						<Button
-							href={linkWhatsApp(MENSAGEM_GERAL)}
-							target="_blank"
-							rel="noopener noreferrer"
-							data-pixel="whatsapp"
-							className="mt-5"
-						>
-							Falar no WhatsApp
-						</Button>
+						<WhatsAppLink className="mt-5">Falar no WhatsApp</WhatsAppLink>
 					</div>
 				)}
 			</div>

@@ -4,7 +4,7 @@ import InstagramIcon from "@/components/icons/InstagramIcon";
 import MailIcon from "@/components/icons/MailIcon";
 import MapPinIcon from "@/components/icons/MapPinIcon";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
-import Link from "@/components/ui/Link";
+import Button from "@/components/ui/Button";
 
 const ENDERECO =
 	"Av. Isabela Moreira Gomes, 91 - Loja 2 - Das Nações, Sobral - CE, 62053-820";
@@ -79,15 +79,21 @@ export default function Contact() {
 									)}
 									{type === "link" && (
 										<dd className="mt-1">
-											<Link href={value.href}>{value.text}</Link>
+											<Button variant="link-light" href={value.href}>
+												{value.text}
+											</Button>
 										</dd>
 									)}
 									{type === "phones" && (
 										<dd className="mt-1 flex flex-col gap-1">
 											{value.map((telefone) => (
-												<Link href={`tel:${telefone.tel}`} key={telefone.tel}>
+												<Button
+													variant="link-light"
+													href={`tel:${telefone.tel}`}
+													key={telefone.tel}
+												>
 													{telefone.numero}
-												</Link>
+												</Button>
 											))}
 										</dd>
 									)}

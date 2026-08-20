@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logoHorizontal from "@/assets/logo3x1-no-bg.png";
 import Button from "@/components/ui/Button";
-import { linkWhatsApp, MENSAGEM_GERAL } from "@/lib/whatsapp";
+import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 
 export default function Hero() {
 	return (
@@ -24,16 +24,9 @@ export default function Hero() {
 						<Button href="/catalogo" size="lg">
 							Ver catálogo
 						</Button>
-						<Button
-							href={linkWhatsApp(MENSAGEM_GERAL)}
-							target="_blank"
-							rel="noopener noreferrer"
-							data-pixel="whatsapp"
-							variant="secondary-dark"
-							size="lg"
-						>
+						<WhatsAppLink variant="secondary-dark" size="lg">
 							Entre em contato
-						</Button>
+						</WhatsAppLink>
 					</div>
 				</div>
 

@@ -10,9 +10,10 @@ export default function GoogleTag() {
 			/>
 			<Script id="google-tag-init" strategy="beforeInteractive">
 				{`window.dataLayer = window.dataLayer || [];
-function gtag() { dataLayer.push(arguments); }
-gtag("js", new Date());
-gtag("config", "AW-18384450133");`}
+				function gtag() { dataLayer.push(arguments); }
+				gtag("js", new Date());
+				gtag("config", "AW-18384450133");
+				`}
 			</Script>
 		</>
 	);

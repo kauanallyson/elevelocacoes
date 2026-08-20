@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/components/ui/Link";
+import Button from "@/components/ui/Button";
 import { clearConsent } from "@/lib/consent";
 
 export default function Footer() {
@@ -19,23 +19,23 @@ export default function Footer() {
 					<p className="mt-1 text-sm text-graphite-300">
 						© {anoAtual} Eleve Locações
 					</p>
-					<Link variant="subtle" onClick={clearConsent}>
+					<Button variant="link-subtle" onClick={clearConsent}>
 						Preferências de cookies
-					</Link>
+					</Button>
 				</div>
 
 				<div className="h-px w-full bg-graphite-700"></div>
 
 				<p className="flex items-center gap-1 text-xs text-graphite-300">
 					Feito por
-					<Link
+					<Button
 						href="https://kauanallyson.com.br"
 						target="_blank"
 						rel="noopener noreferrer"
-						variant="default"
+						variant="link-default"
 					>
 						kauanallyson
-					</Link>
+					</Button>
 				</p>
 			</div>
 		</footer>
