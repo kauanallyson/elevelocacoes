@@ -1,53 +1,57 @@
 @import "tailwindcss";
 
 @theme {
-  --color-accent: #f89c33;
-  --color-accent-dark: #d9821f;
-  --color-accent-tint: #fdf1de;
-  --color-graphite: #58595b;
-  --color-graphite-900: #2c2d2e;
-  --color-graphite-700: #45464a;
-  --color-graphite-300: #c7c8c9;
-  --color-graphite-100: #f2f1ef;
-  --color-graphite-050: #f8f7f6;
-  --color-base: #ffffff;
+	--color-accent: #f89c33;
+	--color-accent-dark: #d9821f;
+	--color-accent-tint: #fdf1de;
+	--color-graphite: #58595b;
+	--color-graphite-900: #2c2d2e;
+	--color-graphite-700: #45464a;
+	--color-graphite-300: #c7c8c9;
+	--color-graphite-100: #f2f1ef;
+	--color-graphite-050: #f8f7f6;
+	--color-base: #ffffff;
 
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
+	--radius-sm: 0.25rem;
+	--radius-md: 0.375rem;
 }
 
 @theme inline {
-  --font-display: var(--font-big-shoulders);
-  --font-sans: var(--font-plex-sans);
-  --font-mono: var(--font-plex-mono);
+	--font-display: var(--font-big-shoulders);
+	--font-sans: var(--font-plex-sans);
+	--font-mono: var(--font-plex-mono);
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+	scroll-behavior: smooth;
+	scroll-padding-top: 5.5rem;
 }
 
 body {
-  background: var(--color-base);
-  color: var(--color-graphite-900);
-  font-feature-settings: "tnum" 1;
+	background: var(--color-base);
+	color: var(--color-graphite-900);
+	font-feature-settings: "tnum" 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+	html {
+		scroll-behavior: auto;
+	}
+	*,
+	*::before,
+	*::after {
+		/* biome-ignore lint/complexity/noImportantStyles: must override component-level animation/transition durations for reduced-motion users */
+		animation-duration: 0.01ms !important;
+		/* biome-ignore lint/complexity/noImportantStyles: must override component-level animation/transition durations for reduced-motion users */
+		animation-iteration-count: 1 !important;
+		/* biome-ignore lint/complexity/noImportantStyles: must override component-level animation/transition durations for reduced-motion users */
+		transition-duration: 0.01ms !important;
+		/* biome-ignore lint/complexity/noImportantStyles: must override component-level animation/transition durations for reduced-motion users */
+		scroll-behavior: auto !important;
+	}
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent-dark);
-  outline-offset: 2px;
+	outline: 2px solid var(--color-accent-dark);
+	outline-offset: 2px;
 }

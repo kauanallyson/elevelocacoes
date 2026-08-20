@@ -4,8 +4,5 @@ import { SITE_URL } from "@/lib/seo";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    { url: `${SITE_URL}/` },
-    { url: `${SITE_URL}/catalogo` },
-  ];
+	return [{ url: `${SITE_URL}/` }, { url: `${SITE_URL}/catalogo` }];
 }

@@ -1,7 +1,11 @@
 export default function MailIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-      <path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13Zm2.2.5 7.3 5.47a.8.8 0 0 0 .96 0L19.8 6H4.2ZM20 7.7l-6.98 5.24a2.8 2.8 0 0 1-3.36 0L4 7.7V18h16V7.7Z" />
-    </svg>
-  );
+	return (
+		<svg
+			aria-hidden="true"
+			viewBox="0 0 24 24"
+			className="h-4 w-4 fill-current"
+		>
+			<path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13Zm2.2.5 7.3 5.47a.8.8 0 0 0 .96 0L19.8 6H4.2ZM20 7.7l-6.98 5.24a2.8 2.8 0 0 1-3.36 0L4 7.7V18h16V7.7Z" />
+		</svg>
+	);
 }

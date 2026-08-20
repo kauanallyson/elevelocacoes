@@ -1,31 +1,32 @@
 {
-  "name": "elevelocacoes",
-  "type": "module",
-  "version": "0.0.1",
-  "packageManager": "bun@1.3.14",
-  "engines": {
-    "node": ">=22.12.0"
-  },
-  "scripts": {
-    "dev": "next dev",
-    "start": "next dev",
-    "build": "next build",
-    "preview": "next build && npx wrangler pages dev out",
-    "deploy": "next build && npx wrangler pages deploy out",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "^15.5.4",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "^26.1.2",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "tailwindcss": "^4.3.3",
-    "typescript": "6.0.3",
-    "wrangler": "^4.118.0"
-  }
+	"name": "elevelocacoes",
+	"type": "module",
+	"version": "0.0.1",
+	"packageManager": "bun@1.3.14",
+	"engines": {
+		"node": ">=22.12.0"
+	},
+	"scripts": {
+		"dev": "next dev",
+		"start": "next dev",
+		"build": "next build",
+		"preview": "next build && npx wrangler pages dev out",
+		"deploy": "next build && npx wrangler pages deploy out",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"next": "^15.5.4",
+		"react": "^19.2.0",
+		"react-dom": "^19.2.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.9",
+		"@tailwindcss/postcss": "^4.3.3",
+		"@types/node": "^26.1.2",
+		"@types/react": "^19.2.2",
+		"@types/react-dom": "^19.2.2",
+		"tailwindcss": "^4.3.3",
+		"typescript": "6.0.3",
+		"wrangler": "^4.118.0"
+	}
 }

@@ -1,9 +1,9 @@
 import Script from "next/script";
 
 export default function Pixel() {
-  return (
-    <Script id="meta-pixel-init">
-      {`function iniciarMetaPixel() {
+	return (
+		<Script id="meta-pixel-init">
+			{`function iniciarMetaPixel() {
   if (window._metaPixelIniciado) return;
   window._metaPixelIniciado = true;
 
@@ -43,6 +43,6 @@ window.addEventListener("consent-changed", () => {
     iniciarMetaPixel();
   }
 });`}
-    </Script>
-  );
+		</Script>
+	);
 }
