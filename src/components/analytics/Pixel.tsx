@@ -1,10 +1,12 @@
-import Script from "next/script";
 import { CONSENT_CHANGED_EVENT, CONSENT_KEY } from "@/lib/consent";
 
 export default function Pixel() {
 	return (
-		<Script id="meta-pixel-init">
-			{`function iniciarMetaPixel() {
+		<script
+			id="meta-pixel-init"
+			// biome-ignore lint/security/noDangerouslySetInnerHtml: static pixel loader, no user input
+			dangerouslySetInnerHTML={{
+				__html: `function iniciarMetaPixel() {
   if (window._metaPixelIniciado) return;
   window._metaPixelIniciado = true;
 
@@ -44,7 +46,8 @@ window.addEventListener("${CONSENT_CHANGED_EVENT}", () => {
     iniciarMetaPixel();
   }
 });
-`}
-		</Script>
+`,
+			}}
+		/>
 	);
 }
