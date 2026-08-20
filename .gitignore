@@ -1,8 +1,6 @@
 # build output
-dist/
-
-# generated types
-.astro/
+/.next/
+/out/
 
 # dependencies
 node_modules/
@@ -26,6 +24,9 @@ pnpm-debug.log*
 
 # vscode
 .vscode/
+
+# next.js
+next-env.d.ts
 
 #wrangler
 .wrangler/

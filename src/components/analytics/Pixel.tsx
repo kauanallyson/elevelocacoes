@@ -1,0 +1,48 @@
+import Script from "next/script";
+
+export default function Pixel() {
+  return (
+    <Script id="meta-pixel-init">
+      {`function iniciarMetaPixel() {
+  if (window._metaPixelIniciado) return;
+  window._metaPixelIniciado = true;
+
+  !(function (f, b, e, v, n, t, s) {
+    if (f.fbq) return;
+    n = f.fbq = function () {
+      n.callMethod
+        ? n.callMethod.apply(n, arguments)
+        : n.queue.push(arguments);
+    };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = !0;
+    n.version = "2.0";
+    n.queue = [];
+    t = b.createElement(e);
+    t.async = !0;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+  })(
+    window,
+    document,
+    "script",
+    "https://connect.facebook.net/en_US/fbevents.js",
+  );
+  fbq("init", "1761995821596014");
+  fbq("track", "PageView");
+}
+
+if (localStorage.getItem("cookie-consent") === "granted") {
+  iniciarMetaPixel();
+}
+
+window.addEventListener("consent-changed", () => {
+  if (localStorage.getItem("cookie-consent") === "granted") {
+    iniciarMetaPixel();
+  }
+});`}
+    </Script>
+  );
+}

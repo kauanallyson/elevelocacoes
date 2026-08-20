@@ -3,20 +3,25 @@
 When starting the dev server, use background mode:
 
 ```
-astro dev --background
+next dev --background
 ```
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+## Deployment
+
+Static export, deployed to Cloudflare Pages as static assets:
+
+```
+next build   # outputs to ./out
+```
 
 ## Documentation
 
-Full documentation: https://docs.astro.build
+Full documentation: https://nextjs.org/docs
 
 Consult these guides before working on related tasks:
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+- [App Router routing](https://nextjs.org/docs/app/building-your-application/routing)
+- [Server and Client Components](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
+- [Metadata API (SEO)](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
+- [Static exports](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
+- [Styling with Tailwind CSS](https://nextjs.org/docs/app/building-your-application/styling/tailwind-css)

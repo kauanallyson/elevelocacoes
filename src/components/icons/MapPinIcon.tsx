@@ -1,0 +1,7 @@
+export default function MapPinIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+      <path d="M12 2c-4.42 0-8 3.58-8 8 0 5.25 7.05 11.34 7.35 11.6a1 1 0 0 0 1.3 0C13.95 21.34 21 15.25 21 10c0-4.42-3.58-8-9-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
+    </svg>
+  );
+}
