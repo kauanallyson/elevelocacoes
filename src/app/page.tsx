@@ -27,9 +27,9 @@ export default function HomePage() {
 				<section id="catalogo" className="bg-white py-8 sm:py-16">
 					<div className="mx-auto max-w-6xl px-4 sm:px-6">
 						<div className="max-w-2xl">
-							<p className="font-mono font-medium uppercase text-accent-dark text-2xl">
+							<h2 className="font-mono font-medium uppercase text-accent-contrast text-2xl">
 								Catálogo
-							</p>
+							</h2>
 						</div>
 
 						<EquipamentoList

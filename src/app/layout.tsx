@@ -12,6 +12,7 @@ const bigShoulders = Big_Shoulders({
 	subsets: ["latin"],
 	weight: ["700", "800"],
 	variable: "--font-big-shoulders",
+	adjustFontFallback: false,
 });
 
 const plexSans = IBM_Plex_Sans({

@@ -5,7 +5,7 @@ import { CONSENT_CHANGED_EVENT, getConsent, setConsent } from "@/lib/consent";
 
 export default function CookieConsent() {
 	const [visivel, setVisivel] = useState(false);
-	const bannerRef = useRef<HTMLDivElement>(null);
+	const bannerRef = useRef<HTMLElement>(null);
 
 	const atualizarEspacamento = useCallback(() => {
 		const banner = bannerRef.current;
@@ -39,9 +39,10 @@ export default function CookieConsent() {
 	}, [visivel, atualizarEspacamento]);
 
 	return (
-		<div
+		<section
 			ref={bannerRef}
 			id="cookie-consent"
+			aria-label="Consentimento de cookies"
 			className={`fixed inset-x-0 bottom-0 z-50 border-t border-graphite-700 bg-graphite-900 px-4 py-4 sm:px-6 ${
 				visivel ? "" : "hidden"
 			}`}
@@ -68,6 +69,6 @@ export default function CookieConsent() {
 					</button>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }

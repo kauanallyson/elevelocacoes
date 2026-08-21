@@ -62,7 +62,7 @@ export default function Catalogo({ equipamentos }: Props) {
 		<section id="catalogo" className="bg-white py-4 sm:py-8">
 			<div className="mx-auto max-w-6xl px-4 sm:px-6">
 				<div className="max-w-2xl">
-					<h1 className="font-mono font-medium uppercase text-accent-dark text-4xl">
+					<h1 className="font-mono font-medium uppercase text-accent-contrast text-4xl">
 						Catálogo
 					</h1>
 				</div>
@@ -108,11 +108,14 @@ export default function Catalogo({ equipamentos }: Props) {
 				</div>
 
 				{filtrados.length > 0 ? (
-					<EquipamentoList
-						id="catalogo-grid"
-						className="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-4"
-						equipamentos={filtrados}
-					/>
+					<>
+						<h2 className="sr-only">Equipamentos disponíveis</h2>
+						<EquipamentoList
+							id="catalogo-grid"
+							className="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-4"
+							equipamentos={filtrados}
+						/>
+					</>
 				) : (
 					<div className="py-16 text-center">
 						<p className="font-display text-xl text-graphite-900">

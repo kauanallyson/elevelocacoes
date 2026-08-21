@@ -64,13 +64,13 @@ export default function Contact() {
 						Fale com um de nossos atendentes
 					</h2>
 
-					<dl className="mt-8 space-y-6 text-sm">
+					<div className="mt-8 space-y-6 text-sm">
 						{contatoItems.map(({ label, type, value, Icon }) => (
 							<div className="flex gap-3" key={label}>
 								<span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-graphite-700 text-accent">
 									<Icon />
 								</span>
-								<div>
+								<dl>
 									<dt className="font-mono uppercase tracking-wide text-graphite-300">
 										{label}
 									</dt>
@@ -97,10 +97,10 @@ export default function Contact() {
 											))}
 										</dd>
 									)}
-								</div>
+								</dl>
 							</div>
 						))}
-					</dl>
+					</div>
 				</div>
 
 				<div className="aspect-4/3 max-h-80 overflow-hidden rounded-md border border-graphite-700 lg:max-h-none">
