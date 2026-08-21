@@ -14,6 +14,16 @@ Static export, deployed to Cloudflare Pages as static assets:
 next build   # outputs to ./out
 ```
 
+### Meta Conversions API
+
+`functions/api/capi.ts` is a Cloudflare Pages Function (server-side, alongside the static export) that forwards Meta Pixel events (`Contact`, `Lead`, `ViewContent`, `FindLocation`) to the Meta Conversions API for deduplication and better match quality. It needs the `META_CAPI_ACCESS_TOKEN` secret:
+
+```
+npx wrangler pages secret put META_CAPI_ACCESS_TOKEN
+```
+
+For local dev/preview, copy `.dev.vars.example` to `.dev.vars` (gitignored) and fill in the token.
+
 ## Documentation
 
 Full documentation: https://nextjs.org/docs

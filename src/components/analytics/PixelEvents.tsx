@@ -1,24 +1,23 @@
 "use client";
 
 import { useEffect } from "react";
+import { trackEvent } from "@/lib/capi";
 import { getConsent } from "@/lib/consent";
-
-declare const fbq: (...args: unknown[]) => void;
 
 const handlers: Record<string, (alvo: HTMLElement) => void> = {
 	whatsapp: () => {
-		fbq("track", "Contact");
-		fbq("track", "Lead");
+		trackEvent("Contact");
+		trackEvent("Lead");
 	},
 	produto: (alvo) => {
-		fbq("track", "ViewContent", {
+		trackEvent("ViewContent", {
 			content_name: alvo.dataset.produtoNome,
 			content_category: alvo.dataset.categoria,
 			content_type: "product",
 		});
 	},
 	localizacao: () => {
-		fbq("track", "FindLocation");
+		trackEvent("FindLocation");
 	},
 };
 
