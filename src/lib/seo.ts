@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 
 export const SITE_URL = "https://elevelocacoes.com.br";
 
-export const TITULO_PADRAO = "Eleve Locações";
+export const TITULO_PADRAO =
+	"Eleve Locações | Aluguel de Andaimes, Escoras e Betoneiras em Sobral-CE";
 export const DESCRICAO_PADRAO =
-	"Locação de andaimes, betoneiras, martelos demolidores, geradores e outros equipamentos para construção civil em Sobral-CE.";
+	"Locação de andaimes, escoras, betoneiras, martelos demolidores, geradores e outros equipamentos para construção civil em Sobral, Tianguá, Preá e Camocim-CE.";
 
 export function buildMetadata({
 	titulo = TITULO_PADRAO,

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import EquipamentoList from "@/components/catalogo/EquipamentoList";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
@@ -7,6 +8,9 @@ import WhatsAppButton from "@/components/sections/WhatsAppButton";
 import Button from "@/components/ui/Button";
 import { EQUIPAMENTOS, type Equipamento } from "@/data/equipamentos";
 import { equipamentosComFoto } from "@/lib/produtos";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata();
 
 const PREVIA = ["escora", "painel-metalico", "barra-de-ancoragem", "betoneira"];
 

@@ -85,7 +85,7 @@ export default async function EquipamentoPage({ params }: Props) {
 								{temFoto ? (
 									<Image
 										src={`/produtos/${slug}.webp`}
-										alt=""
+										alt={nome}
 										fill
 										loading="eager"
 										className="h-full w-full object-cover"

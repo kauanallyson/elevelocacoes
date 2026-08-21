@@ -1,11 +1,15 @@
+import Script from "next/script";
+
 export default function GoogleTag() {
 	return (
 		<>
-			<script
-				async
+			<Script
+				strategy="afterInteractive"
 				src="https://www.googletagmanager.com/gtag/js?id=AW-18384450133"
 			/>
-			<script
+			<Script
+				id="gtag-init"
+				strategy="afterInteractive"
 				// biome-ignore lint/security/noDangerouslySetInnerHtml: static gtag config, no user input
 				dangerouslySetInnerHTML={{
 					__html: `window.dataLayer = window.dataLayer || [];

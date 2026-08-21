@@ -11,7 +11,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
 	titulo: "Catálogo de equipamentos | Eleve Locações",
 	descricao:
-		"Confira o catálogo completo de andaimes, betoneiras, martelos demolidores, geradores e outros equipamentos para locação em Sobral-CE.",
+		"Confira o catálogo completo de andaimes, escoras, betoneiras, martelos demolidores e geradores para locação em Sobral-CE e região, com entrega rápida.",
 	path: "/catalogo",
 });
 

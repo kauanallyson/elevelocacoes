@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logoHorizontal from "@/assets/logo3x1-no-bg.png";
+import logoHorizontal from "@/assets/logo3x1-no-bg.webp";
 import Button from "@/components/ui/Button";
 import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 

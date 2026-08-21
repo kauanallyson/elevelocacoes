@@ -1,9 +1,11 @@
+import Script from "next/script";
 import { CONSENT_CHANGED_EVENT, CONSENT_KEY } from "@/lib/consent";
 
 export default function Pixel() {
 	return (
-		<script
+		<Script
 			id="meta-pixel-init"
+			strategy="afterInteractive"
 			// biome-ignore lint/security/noDangerouslySetInnerHtml: static pixel loader, no user input
 			dangerouslySetInnerHTML={{
 				__html: `function iniciarMetaPixel() {

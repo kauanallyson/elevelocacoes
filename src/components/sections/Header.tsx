@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logoHorizontal from "@/assets/logo3x1-no-bg-gray.png";
+import logoHorizontal from "@/assets/logo3x1-no-bg-gray.webp";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 
