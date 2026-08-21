@@ -22,7 +22,7 @@ export default function EquipamentoList({
 			id={id}
 			className={className ?? "grid grid-cols-2 gap-5 sm:grid-cols-4"}
 		>
-			{equipamentos.map((equipamento) => (
+			{equipamentos.map((equipamento, index) => (
 				<CardEquipamento
 					key={equipamento.slug}
 					equipamento={equipamento}
@@ -30,6 +30,7 @@ export default function EquipamentoList({
 						categoriaLabelPorId.get(equipamento.categoria) ??
 						equipamento.categoria
 					}
+					priority={index < 4}
 				/>
 			))}
 		</div>

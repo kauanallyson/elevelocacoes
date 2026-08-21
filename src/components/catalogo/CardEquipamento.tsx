@@ -6,11 +6,13 @@ import type { EquipamentoComFoto } from "@/lib/produtos";
 type Props = {
 	equipamento: EquipamentoComFoto;
 	categoriaLabel: string;
+	priority?: boolean;
 };
 
 export default function CardEquipamento({
 	equipamento,
 	categoriaLabel,
+	priority = false,
 }: Props) {
 	const { slug, nome, temFoto } = equipamento;
 
@@ -30,7 +32,7 @@ export default function CardEquipamento({
 						src={`/produtos/${slug}.webp`}
 						alt={nome}
 						fill
-						loading="eager"
+						loading={priority ? "eager" : "lazy"}
 						className="h-full w-full object-cover"
 					/>
 				) : (
