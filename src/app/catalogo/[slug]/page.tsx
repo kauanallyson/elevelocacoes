@@ -9,7 +9,7 @@ import Header from "@/components/sections/Header";
 import WhatsAppButton from "@/components/sections/WhatsAppButton";
 import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
 import { CATEGORIAS, EQUIPAMENTOS } from "@/data/equipamentos";
-import { equipamentosComFoto } from "@/lib/produtos";
+import { produtos } from "@/lib/produtos";
 import { buildMetadata } from "@/lib/seo";
 import { mensagemProduto } from "@/lib/whatsapp";
 
@@ -23,19 +23,13 @@ const categoriaLabelPorId = new Map(
 	CATEGORIAS.map((c) => [c.id, c.label] as const),
 );
 
-function getEquipamento(slug: string) {
-	return equipamentosComFoto(EQUIPAMENTOS).find(
-		(equipamento) => equipamento.slug === slug,
-	);
-}
-
 export function generateStaticParams() {
 	return EQUIPAMENTOS.map((equipamento) => ({ slug: equipamento.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
-	const equipamento = getEquipamento(slug);
+	const equipamento = produtos.getEquipamento(slug);
 
 	if (!equipamento) {
 		return buildMetadata();
@@ -53,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function EquipamentoPage({ params }: Props) {
 	const { slug } = await params;
-	const equipamento = getEquipamento(slug);
+	const equipamento = produtos.getEquipamento(slug);
 
 	if (!equipamento) {
 		notFound();
@@ -61,9 +55,7 @@ export default async function EquipamentoPage({ params }: Props) {
 
 	const { nome, descricao, categoria, temFoto } = equipamento;
 
-	const relacionados = equipamentosComFoto(EQUIPAMENTOS)
-		.filter((item) => item.categoria === categoria && item.slug !== slug)
-		.slice(0, RELACIONADOS_LIMITE);
+	const relacionados = produtos.related(equipamento, RELACIONADOS_LIMITE);
 
 	return (
 		<>

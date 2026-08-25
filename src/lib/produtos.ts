@@ -10,11 +10,39 @@ function temFoto(slug: string) {
 	);
 }
 
-export function equipamentosComFoto(
-	equipamentos: Equipamento[] = EQUIPAMENTOS,
-): EquipamentoComFoto[] {
-	return equipamentos.map((equipamento) => ({
-		...equipamento,
-		temFoto: temFoto(equipamento.slug),
-	}));
+let catalogo: EquipamentoComFoto[] | undefined;
+
+function listComFoto(): EquipamentoComFoto[] {
+	if (!catalogo) {
+		catalogo = EQUIPAMENTOS.map((equipamento) => ({
+			...equipamento,
+			temFoto: temFoto(equipamento.slug),
+		}));
+	}
+	return catalogo;
 }
+
+function getEquipamento(slug: string): EquipamentoComFoto | undefined {
+	return listComFoto().find((equipamento) => equipamento.slug === slug);
+}
+
+function preview(slugs: string[]): EquipamentoComFoto[] {
+	const porSlug = new Map(listComFoto().map((e) => [e.slug, e] as const));
+	return slugs
+		.map((slug) => porSlug.get(slug))
+		.filter((equipamento): equipamento is EquipamentoComFoto =>
+			Boolean(equipamento),
+		);
+}
+
+function related(equipamento: EquipamentoComFoto, limit: number) {
+	return listComFoto()
+		.filter(
+			(item) =>
+				item.categoria === equipamento.categoria &&
+				item.slug !== equipamento.slug,
+		)
+		.slice(0, limit);
+}
+
+export const produtos = { listComFoto, getEquipamento, preview, related };

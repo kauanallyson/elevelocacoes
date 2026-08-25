@@ -4,8 +4,7 @@ import Catalogo from "@/components/catalogo/Catalogo";
 import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
 import WhatsAppButton from "@/components/sections/WhatsAppButton";
-import { EQUIPAMENTOS } from "@/data/equipamentos";
-import { equipamentosComFoto } from "@/lib/produtos";
+import { produtos } from "@/lib/produtos";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -16,7 +15,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function CatalogoPage() {
-	const equipamentos = equipamentosComFoto(EQUIPAMENTOS);
+	const equipamentos = produtos.listComFoto();
 
 	return (
 		<>

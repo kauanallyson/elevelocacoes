@@ -6,8 +6,7 @@ import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import WhatsAppButton from "@/components/sections/WhatsAppButton";
 import Button from "@/components/ui/Button";
-import { EQUIPAMENTOS, type Equipamento } from "@/data/equipamentos";
-import { equipamentosComFoto } from "@/lib/produtos";
+import { produtos } from "@/lib/produtos";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata();
@@ -15,13 +14,7 @@ export const metadata: Metadata = buildMetadata();
 const PREVIA = ["escora", "painel-metalico", "barra-de-ancoragem", "betoneira"];
 
 export default function HomePage() {
-	const previaEquipamentos = equipamentosComFoto(
-		PREVIA.map((slug) =>
-			EQUIPAMENTOS.find((equipamento) => equipamento.slug === slug),
-		).filter(
-			(equipamento): equipamento is Equipamento => equipamento !== undefined,
-		),
-	);
+	const previaEquipamentos = produtos.preview(PREVIA);
 
 	return (
 		<>
