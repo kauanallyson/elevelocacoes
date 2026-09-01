@@ -8,21 +8,12 @@ import {
 	type CategoriaId,
 	type Equipamento,
 } from "@/data/equipamentos";
+import { filtrarEquipamentos, isCategoriaId } from "@/lib/catalogo";
 import EquipamentoList from "./EquipamentoList";
 
 type Props = {
 	equipamentos: Equipamento[];
 };
-
-function toLowercaseWithoutAccent(text: string) {
-	return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-}
-
-const CATEGORIA_IDS = CATEGORIAS.map((categoria) => categoria.id);
-
-function isCategoriaId(value: string | null): value is CategoriaId {
-	return value !== null && (CATEGORIA_IDS as string[]).includes(value);
-}
 
 export default function Catalogo({ equipamentos }: Props) {
 	const router = useRouter();
@@ -50,17 +41,10 @@ export default function Catalogo({ equipamentos }: Props) {
 		});
 	}
 
-	const filtrados = useMemo(() => {
-		const termo = toLowercaseWithoutAccent(busca.trim());
-		return equipamentos.filter((equipamento) => {
-			const combinaCategoria =
-				categoriaAtiva === "todos" || equipamento.categoria === categoriaAtiva;
-			const combinaBusca =
-				termo === "" ||
-				toLowercaseWithoutAccent(equipamento.nome).includes(termo);
-			return combinaCategoria && combinaBusca;
-		});
-	}, [busca, categoriaAtiva, equipamentos]);
+	const filtrados = useMemo(
+		() => filtrarEquipamentos(equipamentos, busca, categoriaAtiva),
+		[busca, categoriaAtiva, equipamentos],
+	);
 
 	return (
 		<section id="catalogo" className="bg-white py-4 sm:py-8 min-h-[75vh]">
