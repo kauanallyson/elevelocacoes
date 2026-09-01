@@ -1,10 +1,22 @@
 ## Development
 
+This project uses Bun as the runtime and package manager (`bun install`, `bunx`), not Node/npm directly.
+
 When starting the dev server, use background mode:
 
 ```
 next dev --background
 ```
+
+### Testing
+
+Unit tests use Bun's built-in test runner:
+
+```
+bun test
+```
+
+Test files live alongside the code they test (e.g. `src/lib/catalogo.test.ts`).
 
 ## Deployment
 
@@ -37,14 +49,6 @@ Consult these guides before working on related tasks:
 - [Styling with Tailwind CSS](https://nextjs.org/docs/app/building-your-application/styling/tailwind-css)
 
 ## Agent skills
-
-### Issue tracker
-
-Issues live in GitHub Issues (`kauanallyson/elevelocacoes`), using the `gh` CLI. See `docs/agents/issue-tracker.md`.
-
-### Triage labels
-
-Default canonical labels (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
 
 ### Domain docs
 
