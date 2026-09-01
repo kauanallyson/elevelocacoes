@@ -1,9 +1,8 @@
-import { CATEGORIAS } from "@/data/equipamentos";
-import type { EquipamentoComFoto } from "@/lib/produtos";
+import { CATEGORIAS, type Equipamento } from "@/data/equipamentos";
 import CardEquipamento from "./CardEquipamento";
 
 type Props = {
-	equipamentos: EquipamentoComFoto[];
+	equipamentos: Equipamento[];
 	id?: string;
 	className?: string;
 };

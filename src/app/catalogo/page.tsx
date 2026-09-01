@@ -15,7 +15,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function CatalogoPage() {
-	const equipamentos = produtos.listComFoto();
+	const equipamentos = produtos.list();
 
 	return (
 		<>

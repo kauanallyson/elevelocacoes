@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ProdutoImagem from "@/components/catalogo/ProdutoImagem";
 import VoltarAoCatalogo from "@/components/catalogo/VoltarAoCatalogo";
-import WrenchIcon from "@/components/icons/WrenchIcon";
 import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
 import WhatsAppButton from "@/components/sections/WhatsAppButton";
@@ -39,9 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		titulo: `${equipamento.nome} | Eleve Locações`,
 		descricao: equipamento.descricao.join(" "),
 		path: `/catalogo/${equipamento.slug}`,
-		...(equipamento.temFoto
-			? { imagem: `/produtos/${equipamento.slug}.webp` }
-			: {}),
+		imagem: equipamento.imagem,
 	});
 }
 
@@ -53,7 +50,7 @@ export default async function EquipamentoPage({ params }: Props) {
 		notFound();
 	}
 
-	const { nome, descricao, categoria, temFoto } = equipamento;
+	const { nome, descricao, categoria, imagem } = equipamento;
 
 	const relacionados = produtos.related(equipamento, RELACIONADOS_LIMITE);
 
@@ -74,22 +71,7 @@ export default async function EquipamentoPage({ params }: Props) {
 
 						<div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
 							<div className="relative aspect-4/3 w-full shrink-0 overflow-hidden rounded-md bg-graphite-900 sm:w-3/5">
-								{temFoto ? (
-									<Image
-										src={`/produtos/${slug}.webp`}
-										alt={nome}
-										fill
-										loading="eager"
-										className="h-full w-full object-cover"
-									/>
-								) : (
-									<div className="flex h-full w-full flex-col items-center justify-center gap-2 p-4 text-center">
-										<WrenchIcon />
-										<p className="font-display text-sm leading-tight text-white">
-											{nome}
-										</p>
-									</div>
-								)}
+								<ProdutoImagem src={imagem} alt={nome} loading="eager" />
 							</div>
 
 							<div className="flex flex-col gap-6 sm:flex-1 sm:self-center">

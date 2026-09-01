@@ -3,16 +3,19 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import WhatsAppLink from "@/components/whatsapp/WhatsAppLink";
-import { CATEGORIAS, type CategoriaId } from "@/data/equipamentos";
-import type { EquipamentoComFoto } from "@/lib/produtos";
+import {
+	CATEGORIAS,
+	type CategoriaId,
+	type Equipamento,
+} from "@/data/equipamentos";
 import EquipamentoList from "./EquipamentoList";
 
 type Props = {
-	equipamentos: EquipamentoComFoto[];
+	equipamentos: Equipamento[];
 };
 
-function normalizar(texto: string) {
-	return texto.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+function toLowercaseWithoutAccent(text: string) {
+	return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 }
 
 const CATEGORIA_IDS = CATEGORIAS.map((categoria) => categoria.id);
@@ -48,18 +51,19 @@ export default function Catalogo({ equipamentos }: Props) {
 	}
 
 	const filtrados = useMemo(() => {
-		const termo = normalizar(busca.trim());
+		const termo = toLowercaseWithoutAccent(busca.trim());
 		return equipamentos.filter((equipamento) => {
 			const combinaCategoria =
 				categoriaAtiva === "todos" || equipamento.categoria === categoriaAtiva;
 			const combinaBusca =
-				termo === "" || normalizar(equipamento.nome).includes(termo);
+				termo === "" ||
+				toLowercaseWithoutAccent(equipamento.nome).includes(termo);
 			return combinaCategoria && combinaBusca;
 		});
 	}, [busca, categoriaAtiva, equipamentos]);
 
 	return (
-		<section id="catalogo" className="bg-white py-4 sm:py-8">
+		<section id="catalogo" className="bg-white py-4 sm:py-8 min-h-[75vh]">
 			<div className="mx-auto max-w-6xl px-4 sm:px-6">
 				<div className="max-w-2xl">
 					<h1 className="font-mono font-medium uppercase text-accent-contrast text-4xl">
@@ -92,9 +96,7 @@ export default function Catalogo({ equipamentos }: Props) {
 							className="w-full rounded-sm border border-graphite-300 bg-white px-4 py-2.5 font-sans text-sm text-graphite-900 focus-visible:border-accent-dark"
 							value={categoriaAtiva}
 							onChange={(event) =>
-								selecionarCategoria(
-									event.target.value as CategoriaId | "todos",
-								)
+								selecionarCategoria(event.target.value as CategoriaId | "todos")
 							}
 						>
 							<option value="todos">Todas as categorias</option>
