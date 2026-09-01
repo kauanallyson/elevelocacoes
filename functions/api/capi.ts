@@ -1,5 +1,6 @@
 interface Env {
 	META_CAPI_ACCESS_TOKEN: string;
+	META_PIXEL_ID: string;
 }
 
 interface CapiRequestBody {
@@ -16,7 +17,6 @@ interface CapiRequestContext {
 	env: Env;
 }
 
-const META_PIXEL_ID = "1761995821596014";
 const ALLOWED_EVENTS = new Set(["Contact", "Lead", "ViewContent", "FindLocation"]);
 
 export async function onRequestPost({
@@ -35,7 +35,7 @@ export async function onRequestPost({
 	}
 
 	const metaResponse = await fetch(
-		`https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events?access_token=${env.META_CAPI_ACCESS_TOKEN}`,
+		`https://graph.facebook.com/v21.0/${env.META_PIXEL_ID}/events?access_token=${env.META_CAPI_ACCESS_TOKEN}`,
 		{
 			method: "POST",
 			headers: { "Content-Type": "application/json" },

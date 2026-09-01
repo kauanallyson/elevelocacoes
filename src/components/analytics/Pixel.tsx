@@ -1,6 +1,8 @@
 import Script from "next/script";
 import { CONSENT_CHANGED_EVENT, CONSENT_KEY } from "@/lib/consent";
 
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+
 export default function Pixel() {
 	return (
 		<Script
@@ -35,7 +37,7 @@ export default function Pixel() {
     "script",
     "https://connect.facebook.net/en_US/fbevents.js",
   );
-  fbq("init", "1761995821596014");
+  fbq("init", "${META_PIXEL_ID}");
   fbq("track", "PageView");
 }
 
