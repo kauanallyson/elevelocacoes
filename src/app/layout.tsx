@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Big_Shoulders, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Bebas_Neue, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import GoogleTag from "@/components/analytics/GoogleTag";
 import Pixel from "@/components/analytics/Pixel";
@@ -8,11 +8,10 @@ import CookieConsent from "@/components/cookies/CookieConsent";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildMetadata } from "@/lib/seo";
 
-const bigShoulders = Big_Shoulders({
+const bebasNeue = Bebas_Neue({
 	subsets: ["latin"],
-	weight: ["700", "800"],
+	weight: "400",
 	variable: "--font-big-shoulders",
-	adjustFontFallback: false,
 });
 
 const plexSans = IBM_Plex_Sans({
@@ -48,7 +47,7 @@ export default function RootLayout({
 		<html
 			lang="pt-BR"
 			data-scroll-behavior="smooth"
-			className={`${bigShoulders.variable} ${plexSans.variable} ${plexMono.variable}`}
+			className={`${bebasNeue.variable} ${plexSans.variable} ${plexMono.variable}`}
 		>
 			<head>
 				<GoogleTag />
