@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
-import GoogleTag from "@/components/analytics/GoogleTag";
+import { GoogleTagManager } from "@next/third-parties/google";
 import Pixel from "@/components/analytics/Pixel";
 import PixelEvents from "@/components/analytics/PixelEvents";
 import CookieConsent from "@/components/cookies/CookieConsent";
@@ -50,11 +50,22 @@ export default function RootLayout({
 			className={`${bebasNeue.variable} ${plexSans.variable} ${plexMono.variable}`}
 		>
 			<head>
-				<GoogleTag />
+				<GoogleTagManager gtmId="GTM-N6X7ZNDH" />
 				<Pixel />
 				<JsonLd />
 			</head>
 			<body className="font-sans scroll-smooth">
+				{/* Google Tag Manager (noscript) */}
+				<noscript>
+					<iframe
+						src="https://www.googletagmanager.com/ns.html?id=GTM-N6X7ZNDH"
+						height="0"
+						width="0"
+						style={{ display: "none", visibility: "hidden" }}
+						title="Google Tag Manager"
+					/>
+				</noscript>
+				{/* End Google Tag Manager (noscript) */}
 				{children}
 				<PixelEvents />
 				<CookieConsent />
