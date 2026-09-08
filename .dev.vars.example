@@ -1,1 +1,8 @@
+# Secret for functions/api/capi.ts (Cloudflare Pages Function that forwards
+# Meta Pixel events to the Meta Conversions API). Only read server-side, only
+# needed when running/previewing the Pages Function locally (wrangler pages dev).
+# In production it's set via: npx wrangler pages secret put META_CAPI_ACCESS_TOKEN
+#
+# Note: META_PIXEL_ID is not a secret and does not belong here — it's already
+# set as a plaintext var in wrangler.jsonc.
 META_CAPI_ACCESS_TOKEN=

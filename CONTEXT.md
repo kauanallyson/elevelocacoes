@@ -14,4 +14,4 @@ _Avoid_: Product, item
 
 **Categoria**:
 A grouping of equipamentos in the catalog (e.g. "Andaimes e Escoramento"), used for filtering.
-_Avoid_: Category (in code — the domain term stays in Portuguese, matching the codebase)
+_Avoid_: Category (in code, the domain term stays in Portuguese, matching the codebase)
