@@ -27,7 +27,7 @@ export default function JsonLd() {
 	return (
 		<script
 			type="application/ld+json"
-			// biome-ignore lint/security/noDangerouslySetInnerHtml: static, hard-coded structured data, no user input
+			// biome-ignore lint/security/noDangerouslySetInnerHtml: JSONLD
 			dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 		/>
 	);
