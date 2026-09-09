@@ -1,3 +1,5 @@
+"use client";
+
 import type { ComponentType } from "react";
 import ClockIcon from "@/components/icons/ClockIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
@@ -5,6 +7,7 @@ import MailIcon from "@/components/icons/MailIcon";
 import MapPinIcon from "@/components/icons/MapPinIcon";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import Button from "@/components/ui/Button";
+import { track } from "@/lib/tracking";
 
 const ENDERECO =
 	"Av. Isabela Moreira Gomes, 91 - Loja 2 - Das Nações, Sobral - CE, 62053-820";
@@ -79,7 +82,15 @@ export default function Contact() {
 									)}
 									{type === "link" && (
 										<dd className="mt-1">
-											<Button variant="link-light" href={value.href}>
+											<Button
+												variant="link-light"
+												href={value.href}
+												onClick={
+													value.href.startsWith("mailto:")
+														? () => track("contato")
+														: undefined
+												}
+											>
 												{value.text}
 											</Button>
 										</dd>
@@ -91,6 +102,7 @@ export default function Contact() {
 													variant="link-light"
 													href={`tel:${telefone.tel}`}
 													key={telefone.tel}
+													onClick={() => track("contato")}
 												>
 													{telefone.numero}
 												</Button>
@@ -103,7 +115,12 @@ export default function Contact() {
 					</div>
 				</div>
 
-				<div className="aspect-4/3 max-h-80 overflow-hidden rounded-md border border-graphite-700 lg:max-h-none">
+				{/* biome-ignore lint/a11y/noStaticElementInteractions: click only reports a conversion*/}
+				{/* biome-ignore lint/a11y/useKeyWithClickEvents: no keyboard-only equivalent action exists here */}
+				<div
+					className="aspect-4/3 max-h-80 overflow-hidden rounded-md border border-graphite-700 lg:max-h-none"
+					onClick={() => track("ver_rota")}
+				>
 					<iframe
 						title="Localização da Eleve Locações no Google Maps"
 						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4909.590913257385!2d-40.32587682414844!3d-3.680347142931439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7eac745db806fab%3A0x4d7a2865a9fc0836!2zRWxldmUgTG9jYcOnw7VlcyBlIFNlcnZpw6dvcyB8IFNvYnJhbA!5e1!3m2!1spt-BR!2sbr!4v1785884243830!5m2!1spt-BR!2sbr"

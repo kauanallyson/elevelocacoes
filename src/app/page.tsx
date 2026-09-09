@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HomeViewConversion from "@/components/analytics/HomeViewConversion";
 import EquipamentoList from "@/components/catalogo/EquipamentoList";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
@@ -18,6 +19,7 @@ export default function HomePage() {
 
 	return (
 		<>
+			<HomeViewConversion />
 			<Header />
 			<main>
 				<Hero />

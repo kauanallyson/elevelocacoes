@@ -22,8 +22,6 @@ export default function CardEquipamento({
 			data-card
 			data-nome={nome}
 			data-categoria={equipamento.categoria}
-			data-pixel="produto"
-			data-produto-nome={nome}
 		>
 			<div className="relative aspect-4/3 w-full overflow-hidden bg-graphite-900">
 				<ProdutoImagem

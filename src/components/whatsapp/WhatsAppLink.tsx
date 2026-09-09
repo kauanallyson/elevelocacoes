@@ -1,4 +1,8 @@
+"use client";
+
+import type { MouseEvent } from "react";
 import Button, { type ButtonProps } from "@/components/ui/Button";
+import { track } from "@/lib/tracking";
 import { linkWhatsApp, MENSAGEM_GERAL } from "@/lib/whatsapp";
 
 type Props = Omit<
@@ -10,6 +14,7 @@ type Props = Omit<
 
 export default function WhatsAppLink({
 	mensagem = MENSAGEM_GERAL,
+	onClick,
 	...rest
 }: Props) {
 	return (
@@ -17,7 +22,10 @@ export default function WhatsAppLink({
 			href={linkWhatsApp(mensagem)}
 			target="_blank"
 			rel="noopener noreferrer"
-			data-pixel="whatsapp"
+			onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+				track("whatsapp_cta");
+				onClick?.(event);
+			}}
 			{...rest}
 		/>
 	);
