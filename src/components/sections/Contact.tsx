@@ -115,12 +115,7 @@ export default function Contact() {
 					</div>
 				</div>
 
-				{/* biome-ignore lint/a11y/noStaticElementInteractions: click only reports a conversion*/}
-				{/* biome-ignore lint/a11y/useKeyWithClickEvents: no keyboard-only equivalent action exists here */}
-				<div
-					className="aspect-4/3 max-h-80 overflow-hidden rounded-md border border-graphite-700 lg:max-h-none"
-					onClick={() => track("ver_rota")}
-				>
+				<div className="aspect-4/3 max-h-80 overflow-hidden rounded-md border border-graphite-700 lg:max-h-none">
 					<iframe
 						title="Localização da Eleve Locações no Google Maps"
 						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4909.590913257385!2d-40.32587682414844!3d-3.680347142931439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7eac745db806fab%3A0x4d7a2865a9fc0836!2zRWxldmUgTG9jYcOnw7VlcyBlIFNlcnZpw6dvcyB8IFNvYnJhbA!5e1!3m2!1spt-BR!2sbr!4v1785884243830!5m2!1spt-BR!2sbr"

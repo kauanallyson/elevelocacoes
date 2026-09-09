@@ -10,7 +10,6 @@ const CONVERSION_SEND_TO = {
 	whatsapp_cta: "AW-18384450133/GWQoCM6BqfIcENXksb5E",
 	home_viewed: "AW-18384450133/GlAVCNGBqfIcENXksb5E",
 	contato: "AW-18384450133/hCEVCNSBqfIcENXksb5E",
-	ver_rota: "AW-18384450133/SralCNeBqfIcENXksb5E",
 } as const;
 
 export type TrackingEvent = keyof typeof CONVERSION_SEND_TO;
