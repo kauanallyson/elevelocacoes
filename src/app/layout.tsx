@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { Gtag } from "@/components/analytics/Gtag";
+import { Pixel } from "@/components/analytics/Pixel";
 import CookieConsent from "@/components/cookies/CookieConsent";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildMetadata } from "@/lib/seo";
@@ -52,6 +53,7 @@ export default function RootLayout({
 			</head>
 			<body className="font-sans scroll-smooth">
 				<Gtag />
+				<Pixel />
 				{children}
 				<CookieConsent />
 			</body>

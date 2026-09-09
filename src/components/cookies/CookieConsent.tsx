@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { CONSENT_CHANGED_EVENT, getConsent, setConsent } from "@/lib/consent";
+import { useCallback, useEffect, useRef } from "react";
+import { setConsent, useConsent } from "@/lib/consent";
 
 export default function CookieConsent() {
-	const [visivel, setVisivel] = useState(false);
+	const consent = useConsent();
+	const visivel = consent === null;
 	const bannerRef = useRef<HTMLElement>(null);
 
 	const atualizarEspacamento = useCallback(() => {
@@ -19,19 +20,10 @@ export default function CookieConsent() {
 		);
 	}, []);
 
-	const atualizarBanner = useCallback(() => {
-		setVisivel(getConsent() === null);
-	}, []);
-
 	useEffect(() => {
-		atualizarBanner();
-		window.addEventListener(CONSENT_CHANGED_EVENT, atualizarBanner);
 		window.addEventListener("resize", atualizarEspacamento);
-		return () => {
-			window.removeEventListener(CONSENT_CHANGED_EVENT, atualizarBanner);
-			window.removeEventListener("resize", atualizarEspacamento);
-		};
-	}, [atualizarBanner, atualizarEspacamento]);
+		return () => window.removeEventListener("resize", atualizarEspacamento);
+	}, [atualizarEspacamento]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: must re-measure banner height after `visivel` toggles the "hidden" class
 	useEffect(() => {
