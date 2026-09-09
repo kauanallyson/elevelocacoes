@@ -25,6 +25,10 @@ function subscribe(onStoreChange: () => void) {
 	return () => window.removeEventListener(CONSENT_CHANGED_EVENT, onStoreChange);
 }
 
+function getServerSnapshot(): ConsentStatus {
+	return null;
+}
+
 export function useConsent(): ConsentStatus {
-	return useSyncExternalStore(subscribe, getConsent);
+	return useSyncExternalStore(subscribe, getConsent, getServerSnapshot);
 }
