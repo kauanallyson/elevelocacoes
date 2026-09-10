@@ -1,6 +1,6 @@
 # Eleve Locações
 
-Site institucional e catálogo da Eleve Locações, empresa de locação de equipamentos para construção em Sobral-CE.
+Landing page e catálogo da Eleve Locações, empresa de locação de equipamentos para construção em Sobral-CE.
 
 ## Stack
 
